@@ -60,7 +60,7 @@ header {
     padding: 25px 100px;
     width: 100%;
     position: fixed;
-    background: #fff;
+    background: #F6F5F3;
     z-index: 200;
 }
 </style>
