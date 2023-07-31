@@ -964,7 +964,7 @@ svg:hover stop:last-child {
 }
 
 section {
-    padding: 100px 100px 0;
+    padding: 120px 100px 0;
 }
 
 .main img {
