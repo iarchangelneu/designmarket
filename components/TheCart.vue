@@ -1,0 +1,156 @@
+<template>
+    <div class="cart">
+        <div class="d-flex justify-content-between align-items-center">
+            <h3>корзина</h3>
+            <img src="@/assets/img/close.svg" alt="" style="cursor: pointer;" @click="closeHeader">
+        </div>
+
+        <div class="cart__body w-100">
+            <div class="product d-flex">
+                <div class="product__img">
+                    <img src="@/assets/img/cart1.png" alt="">
+                </div>
+                <div class="name w-100">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <span>Шаблон дизайна сайта “Доставка еды”</span>
+                        <img src="@/assets/img/delete.svg" alt="" style="cursor: pointer;">
+                    </div>
+                    <p class="mb-0">11 540 ₸</p>
+                </div>
+            </div>
+            <div class="product d-flex">
+                <div class="product__img">
+                    <img src="@/assets/img/cart1.png" alt="">
+                </div>
+                <div class="name w-100">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <span>Шаблон дизайна сайта “Доставка еды”</span>
+                        <img src="@/assets/img/delete.svg" alt="" style="cursor: pointer;">
+                    </div>
+                    <p class="mb-0">11 540 ₸</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cart__footer text-center">
+            <button>перейти к оформлению</button>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            closed: false,
+        }
+    },
+    methods: {
+        closeHeader() {
+            let sc = $(".cart")[0];
+            sc.style.right = '-2000px';
+        },
+    }
+}
+</script>
+<style scoped>
+.cart__footer button {
+    border-radius: 50px;
+    border: 3px solid #000;
+    background: transparent;
+    padding: 13px 26px;
+
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    font-family: var(--int);
+    color: #000;
+
+    transition: all .3s ease;
+}
+
+.cart__footer button:hover {
+    background: #000;
+    color: #fff;
+}
+
+.cart__footer {
+    margin-top: 40px;
+}
+
+.cart__body {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.product {
+    margin-bottom: 30px;
+}
+
+.product:last-child {
+    margin-bottom: 0;
+}
+
+.name p {
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    margin-top: 5%;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-family: var(--int);
+}
+
+.name span {
+    font-size: 13.229px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+    font-family: var(--int);
+    color: #000;
+    max-width: 164px;
+}
+
+.name {
+    margin-left: 20px;
+}
+
+.product__img {
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
+}
+
+.cart__body {
+    margin-top: 76px;
+}
+
+.cart h3 {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    font-family: var(--int);
+    color: #000;
+    margin: 0;
+}
+
+.cart {
+    background: #fff;
+    position: absolute;
+    right: -2000px;
+    width: 33%;
+    height: 100%;
+    transition: all .3s ease;
+    z-index: 300;
+    padding: 60px;
+}
+
+.active {
+    right: 0 !important;
+}
+</style>
