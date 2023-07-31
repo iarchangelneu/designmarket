@@ -8,12 +8,12 @@
 
             <div class="links d-flex">
                 <div>
-                    <NuxtLink to="/">для дизайнера</NuxtLink>
-                    <NuxtLink to="/">пользовательское соглашение</NuxtLink>
+                    <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
+                    <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
                 </div>
                 <div>
                     <NuxtLink to="/">личный кабинет</NuxtLink>
-                    <NuxtLink to="/">политика конфиденциальности</NuxtLink>
+                    <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
                 </div>
             </div>
         </div>

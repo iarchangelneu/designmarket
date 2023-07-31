@@ -178,6 +178,7 @@ useSeoMeta({
     border: 3px solid #000;
     padding: 15px 40px;
     background: transparent;
+    gap: 0 10px;
 
     font-size: 24px;
     font-style: normal;
