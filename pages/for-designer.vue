@@ -5,11 +5,11 @@
             <div>
                 <h1>Заработай на своих навыках в дизайне</h1>
 
-                <p>Design Market - это современная платформа, которая дает дизайнерам возможность превратить свои работы в
+                <p>Themes - это современная платформа, которая дает дизайнерам возможность превратить свои работы в
                     пассивный заработок</p>
 
                 <ol>
-                    <li>Зарегистрируйся как продавец на Design Market</li>
+                    <li>Зарегистрируйся как продавец на Themes</li>
                     <li>Создай шаблон дизайна сайта</li>
                     <li>Используй в своей работе Auto Layout, компоненты, и другие возможности Figma, упрощающие дальнейшую
                         работу с шаблоном</li>
@@ -29,10 +29,10 @@
 </template>
 <script setup>
 useSeoMeta({
-    title: 'Для дизайнера | Design Market',
-    ogTitle: 'Для дизайнера | Design Market',
-    description: 'Для дизайнера | Design Market',
-    ogDescription: 'Для дизайнера | Design Market',
+    title: 'Для дизайнера | Themes',
+    ogTitle: 'Для дизайнера | Themes',
+    description: 'Для дизайнера | Themes',
+    ogDescription: 'Для дизайнера | Themes',
 })
 </script>
 <style scoped>

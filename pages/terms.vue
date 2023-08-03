@@ -30,10 +30,10 @@
 </template>
 <script setup>
 useSeoMeta({
-    title: 'Пользовательское соглашение | Design Market',
-    ogTitle: 'Пользовательское соглашение | Design Market',
-    description: 'Пользовательское соглашение | Design Market',
-    ogDescription: 'Пользовательское соглашение | Design Market',
+    title: 'Пользовательское соглашение | Themes',
+    ogTitle: 'Пользовательское соглашение | Themes',
+    description: 'Пользовательское соглашение | Themes',
+    ogDescription: 'Пользовательское соглашение | Themes',
 })
 </script>
 <style scoped>

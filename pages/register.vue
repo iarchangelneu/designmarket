@@ -6,9 +6,9 @@
                     <div class="text-center">
                         <h1>Регистрация</h1>
                     </div>
-                    <input type="email" name="email" id="" placeholder="E-mail">
-                    <input type="password" name="password" id="" placeholder="Пароль">
-                    <input type="password" name="repeat-password" id="" placeholder="Повторите пароль">
+                    <input type="email" name="email" id="email" placeholder="E-mail">
+                    <input type="password" name="password" id="password" placeholder="Пароль">
+                    <input type="password" name="repeat-password" id="repeat-password" placeholder="Повторите пароль">
                     <div class="switch-button">
                         <span class="active" :style="{ left: activeSwitchPosition }"></span>
                         <button type="button" class="switch-button-case left"
@@ -18,6 +18,13 @@
                             :class="{ 'active-case': activeSwitchPosition === '50%' }"
                             @click="switchRight">ПРОДАВЕЦ</button>
                     </div>
+                    <label class="custom-checkbox">
+                        <input type="checkbox" class="" value="0">
+                        <p class="checkbox-text m-0">Принимаю условия <NuxtLink to='/terms'>Пользовательского соглашения
+                            </NuxtLink> и <NuxtLink to='/polytics'>Политики
+                                конфиденциальности</NuxtLink>
+                        </p>
+                    </label>
                     <button class="w-100 register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
                     <div class="text-center">
                         <span>Уже есть аккаунт? <NuxtLink to='/login'>Войти</NuxtLink></span>
@@ -52,13 +59,59 @@ export default {
 </script>
 <script setup>
 useSeoMeta({
-    title: 'Регистрация | Design Market',
-    ogTitle: 'Регистрация | Design Market',
-    description: 'Регистрация | Design Market',
-    ogDescription: 'Регистрация | Design Market',
+    title: 'Регистрация | Themes',
+    ogTitle: 'Регистрация | Themes',
+    description: 'Регистрация | Themes',
+    ogDescription: 'Регистрация | Themes',
 })
 </script>
 <style scoped>
+.custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    border-radius: 4px;
+}
+
+.custom-checkbox .checkbox-text:before {
+    content: url('@/assets/img/check.svg');
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+
+.custom-checkbox input[type="checkbox"]:checked+.checkbox-text:before {
+    content: url('@/assets/img/check.svg');
+    font-size: 16px;
+    color: black;
+    text-align: center;
+    line-height: 20px;
+    background: #000;
+}
+
+.custom-checkbox a {
+    color: #000;
+    text-decoration: underline !important;
+    z-index: 50;
+}
+
+.custom-checkbox p {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    font-family: var(--int);
+    color: #000;
+}
+
+.custom-checkbox {
+    margin-bottom: 30px;
+}
+
 .switch-button {
     width: 100%;
     height: 60px;
@@ -201,8 +254,11 @@ useSeoMeta({
     margin-bottom: 30px;
 }
 
+
+
 .login__form {
     padding: 0 47px;
+    background: #fff;
 }
 
 .login {

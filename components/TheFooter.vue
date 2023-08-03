@@ -1,20 +1,15 @@
 <template>
     <footer v-if="!hideFooterOnPages.includes($route.name)">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
                 <img src="@/assets/img/footerlogo.svg" alt="">
-                <h1>design market.</h1>
             </div>
 
             <div class="links d-flex">
-                <div>
-                    <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
-                    <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
-                </div>
-                <div>
-                    <NuxtLink to="/">личный кабинет</NuxtLink>
-                    <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
-                </div>
+                <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
+                <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
+                <NuxtLink to="/buyer-account">личный кабинет</NuxtLink>
+                <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
             </div>
         </div>
         <div class="text-center copyright">
@@ -34,7 +29,7 @@ export default {
 </script>
 <style scoped>
 .copyright {
-    margin-top: 96px;
+    margin-top: 76px;
 }
 
 .copyright p {
@@ -63,7 +58,7 @@ export default {
 }
 
 .links {
-    gap: 0 96px;
+    gap: 0 68px;
 }
 
 footer h1 {

@@ -12,18 +12,28 @@
 
             <div class="first">
                 <img src="@/assets/img/cart.svg" style="cursor: pointer;" alt="" @click="openHeader">
-                <NuxtLink to="/login">Войти</NuxtLink>
-                <NuxtLink to="/register">регистрация</NuxtLink>
+                <div class="first" v-if="isAuth">
+                    <NuxtLink to="/login">Войти</NuxtLink>
+                    <NuxtLink to="/register">регистрация</NuxtLink>
+                </div>
+                <div v-else class="first">
+                    <NuxtLink style="cursor:pointer" data-toggle="modal" data-target="#outModal">23 000 ₸</NuxtLink>
+                    <NuxtLink to="/seller-account">личный кабинет</NuxtLink>
+                </div>
             </div>
 
         </div>
     </header>
+
+    <TheOutModal></TheOutModal>
+    <TheInModal></TheInModal>
 </template>
 <script>
 export default {
     data() {
         return {
             cartOpen: false,
+            isAuth: false,
         }
     },
     methods: {

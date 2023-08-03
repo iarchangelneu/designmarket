@@ -80,12 +80,17 @@ useSeoMeta({
 }
 
 .author__price p {
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
     text-transform: uppercase;
     font-family: var(--int);
+    padding: 0 23px;
+    border-image: url('@/assets/img/border.svg');
+    border-image-slice: 9;
+    border-image-width: 8px;
+    border-style: solid;
 
 }
 

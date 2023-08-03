@@ -84,7 +84,7 @@
                             <img src="@/assets/img/sale1.png" alt="">
                             <div class="smallhover">
                                 <div class="hvrbtn">
-                                    <button>ПОДРОБНЕЕ</button>
+                                    <button class="lala">ПОДРОБНЕЕ</button>
                                 </div>
                                 <div class="sale2">
                                     <span>30%</span>
@@ -146,7 +146,7 @@
                             <img src="@/assets/img/sale1.png" alt="">
                             <div class="smallhover">
                                 <div class="hvrbtn">
-                                    <button>ПОДРОБНЕЕ</button>
+                                    <button class="lala">ПОДРОБНЕЕ</button>
                                 </div>
                                 <div class="sale2">
                                     <span>30%</span>
@@ -202,130 +202,7 @@
                         </div>
                     </div>
                 </swiper-slide>
-                <swiper-slide>
-                    <div class="d-flex">
-                        <div class="bigimg">
-                            <img src="@/assets/img/sale1.png" alt="">
-                            <div class="smallhover">
-                                <div class="hvrbtn">
-                                    <button>ПОДРОБНЕЕ</button>
-                                </div>
-                                <div class="sale2">
-                                    <span>30%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="smallimgs">
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale2.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale3.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale4.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale5.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="d-flex">
-                        <div class="bigimg">
-                            <img src="@/assets/img/sale1.png" alt="">
-                            <div class="smallhover">
-                                <div class="hvrbtn">
-                                    <button>ПОДРОБНЕЕ</button>
-                                </div>
-                                <div class="sale2">
-                                    <span>30%</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="smallimgs">
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale2.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale3.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale4.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="smallsh">
-                                <img src="@/assets/img/sale5.png" alt="">
-                                <div class="smallhover">
-                                    <div class="hvrbtn">
-                                        <button>ПОДРОБНЕЕ</button>
-                                    </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </swiper-slide>
 
             </swiper>
             <div class="sales-pagination"></div>
@@ -415,7 +292,7 @@
 
             <div>
                 <h2>Зарабатывайте с помощью своих дизайнов на нашей платформе</h2>
-                <p>Design Market поможет дизайнерам успешно монетизировать свои уникальные работы.
+                <p>Themes поможет дизайнерам успешно монетизировать свои уникальные работы.
                 </p>
                 <p> Простой интерфейс позволит быстро загрузить работу и начать продажи шаблонов дизайна, не прерывая
                     творческий процесс.</p>
@@ -544,13 +421,21 @@ export default {
 </script>
 <script setup>
 useSeoMeta({
-    title: 'Главная | Design Market',
-    ogTitle: 'Главная | Design Market',
-    description: 'Главная | Design Market',
-    ogDescription: 'Главная | Design Market',
+    title: 'Главная | Themes',
+    ogTitle: 'Главная | Themes',
+    description: 'Главная | Themes',
+    ogDescription: 'Главная | Themes',
 })
 </script>
 <style>
+.lala {
+    border-radius: 50px !important;
+    border: 3px solid #FFF !important;
+    padding: 16px 41px !important;
+
+    font-size: 32px !important;
+}
+
 .linktoshop {
     margin-top: 48px;
 }
@@ -821,7 +706,24 @@ svg:hover stop:last-child {
     left: 0;
     width: 100%;
     height: 100%;
+    border-radius: 50px;
     backdrop-filter: blur(3.5px);
+    transition: all .3s ease;
+    overflow: hidden;
+}
+
+.smallhover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Цвет и прозрачность */
+    z-index: -1;
+    pointer-events: none;
+    /* Чтобы псевдоэлемент не мешал взаимодействию с содержимым */
     transition: all .3s ease;
 }
 
@@ -833,6 +735,12 @@ svg:hover stop:last-child {
 
     color: #fff;
     text-transform: uppercase;
+    transition: all .3s ease;
+}
+
+.smallhover button:hover {
+    color: #000;
+    background: #fff;
 }
 
 .smallsh {

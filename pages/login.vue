@@ -6,8 +6,8 @@
                     <div class="text-center">
                         <h1>аВТОРИЗАЦИЯ</h1>
                     </div>
-                    <input type="email" name="email" id="" placeholder="E-mail">
-                    <input type="password" name="password" id="" placeholder="Пароль">
+                    <input type="email" name="email" id="email" placeholder="E-mail">
+                    <input type="password" name="password" id="password" placeholder="Пароль">
 
                     <button class="w-100">Войти</button>
                     <div class="text-center">
@@ -26,10 +26,10 @@
 </template>
 <script setup>
 useSeoMeta({
-    title: 'Авторизация | Design Market',
-    ogTitle: 'Авторизация | Design Market',
-    description: 'Авторизация | Design Market',
-    ogDescription: 'Авторизация | Design Market',
+    title: 'Авторизация | Themes',
+    ogTitle: 'Авторизация | Themes',
+    description: 'Авторизация | Themes',
+    ogDescription: 'Авторизация | Themes',
 })
 </script>
 <style scoped>
@@ -108,6 +108,7 @@ useSeoMeta({
 
 .login__form {
     padding: 0 47px;
+    background: #fff;
 }
 
 .login {

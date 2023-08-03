@@ -30,10 +30,10 @@
 </template>
 <script setup>
 useSeoMeta({
-    title: 'Политика конфиденциальности | Design Market',
-    ogTitle: 'Политика конфиденциальности | Design Market',
-    description: 'Политика конфиденциальности | Design Market',
-    ogDescription: 'Политика конфиденциальности | Design Market',
+    title: 'Политика конфиденциальности | Themes',
+    ogTitle: 'Политика конфиденциальности | Themes',
+    description: 'Политика конфиденциальности | Themes',
+    ogDescription: 'Политика конфиденциальности | Themes',
 })
 </script>
 <style scoped>

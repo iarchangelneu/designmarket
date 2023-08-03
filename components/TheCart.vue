@@ -141,7 +141,7 @@ export default {
 
 .cart {
     background: #fff;
-    position: absolute;
+    position: fixed;
     right: -2000px;
     width: 33%;
     height: 100%;
