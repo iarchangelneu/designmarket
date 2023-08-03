@@ -186,7 +186,10 @@ useSeoMeta({
     background: #FFF;
     box-shadow: 0px 0px 15px 0px rgba(47, 59, 163, 0.20);
     padding: 40px;
-    max-width: 609px;
+    max-width: 31.719vw;
+    position: sticky;
+    top: 140px;
+    bottom: 72px;
 }
 
 .product__preview {
@@ -196,7 +199,7 @@ useSeoMeta({
 }
 
 .product {
-    padding: 120px 100px 72px;
+    padding: 140px 100px 72px;
     gap: 0 40px;
 }
 </style>

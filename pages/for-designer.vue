@@ -94,6 +94,6 @@ ol {
 }
 
 .designer {
-    padding: 120px 100px 72px;
+    padding: 140px 100px 72px;
 }
 </style>
