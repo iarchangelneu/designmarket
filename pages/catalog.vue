@@ -217,7 +217,7 @@ hr {
 }
 
 .sort__body small {
-    font-size: 1.25vw;
+    font-size: 1.04vw;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -238,7 +238,7 @@ hr {
     box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
     padding: 10px 40px;
     position: absolute;
-    width: 16.771vw;
+    width: 100%;
     margin-top: 20px;
     z-index: 50;
 }

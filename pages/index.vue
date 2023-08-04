@@ -813,6 +813,7 @@ svg:hover stop:last-child {
 }
 
 .main button {
+    margin-top: 20px;
     border-radius: 50px;
     border: 3px solid #000;
     background: transparent;
@@ -854,7 +855,7 @@ svg:hover stop:last-child {
 .navslider {
     position: absolute;
     bottom: 0;
-    right: 0;
+    right: 20%;
     z-index: 100;
 }
 
