@@ -350,4 +350,92 @@ input[type="file"] {
 .createproduct {
     margin-top: 54px;
 }
+
+@media (max-width: 1440px) {
+    /* .creat__body label {
+        font-size: 20px;
+    } */
+
+    .creat__body {
+        gap: 20px;
+    }
+
+    .custom-file-upload small {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .creat__body {
+        flex-direction: column;
+    }
+
+    #name {
+        width: 100%;
+    }
+
+    .category__select {
+        width: 100%;
+        gap: 10px;
+    }
+
+    .discount {
+        gap: 10px;
+        width: 100%;
+    }
+
+    .category__select div:first-child {
+        width: 100%;
+    }
+
+    .creat__body textarea {
+        width: 100%;
+    }
+
+    #price {
+        width: 100%;
+    }
+
+    #discount {
+        width: 100%;
+    }
+
+    .selected__cat {
+        width: 100% !important;
+    }
+
+    .creat__body label {
+        font-size: 20px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px !important;
+    }
+
+    .custom-file-upload span {
+        font-size: 14px;
+    }
+
+    .creat__body button {
+        margin-top: 20px;
+        padding: 15px 0;
+        width: 100%;
+        font-size: 20px;
+        border: 2px solid #000;
+    }
+
+    .category__select {
+        flex-direction: column;
+    }
+
+    #category {
+        width: 100%;
+    }
+
+    .createproduct {
+        margin-top: 20px;
+    }
+}
 </style>

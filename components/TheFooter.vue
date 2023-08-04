@@ -1,20 +1,38 @@
 <template>
     <footer v-if="!hideFooterOnPages.includes($route.name)">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <img src="@/assets/img/footerlogo.svg" alt="">
-            </div>
+        <div class="pc">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <img src="@/assets/img/footerlogo.svg" class="img-fluid" alt="">
+                </div>
 
-            <div class="links d-flex">
-                <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
-                <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
-                <NuxtLink to="/buyer-account">личный кабинет</NuxtLink>
-                <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
+                <div class="links d-flex">
+                    <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
+                    <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
+                    <NuxtLink to="/buyer-account">личный кабинет</NuxtLink>
+                    <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
+                </div>
+            </div>
+            <div class="text-center copyright">
+                <p>г. Алматы, пр-кт Республики 13, Почтовый индекс A15X3C5 (050013), +7 775 816 82 48, БИН 210840016943</p>
+                <p>Почта поддержки : support@designmarket.kz</p>
             </div>
         </div>
-        <div class="text-center copyright">
-            <p>г. Алматы, пр-кт Республики 13, Почтовый индекс A15X3C5 (050013), +7 775 816 82 48, БИН 210840016943</p>
-            <p>Почта поддержки : support@designmarket.kz</p>
+        <div class="mob">
+            <div class="links">
+                <div class="d-flex justify-content-between align-items-center">
+                    <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
+                    <img src="@/assets/img/footermob.svg" alt="">
+                </div>
+                <NuxtLink to="/buyer-account">личный кабинет</NuxtLink>
+                <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
+                <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
+
+                <p class="mb-0">г. Алматы, пр-кт Республики 13Почтовый индекс A15X3C5 (050013)+7 775 816 82 48, БИН
+                    210840016943<br>
+                    Почта поддержки : <a href="mailto:">support@designmarket.kz</a> </p>
+
+            </div>
         </div>
     </footer>
 </template>
@@ -28,6 +46,10 @@ export default {
 }
 </script>
 <style scoped>
+.mob {
+    display: none;
+}
+
 .copyright {
     margin-top: 76px;
 }
@@ -42,6 +64,8 @@ export default {
     margin: 0;
 }
 
+
+
 .links a {
     display: block;
     color: #fff;
@@ -53,9 +77,6 @@ export default {
     font-family: var(--int);
 }
 
-.links a:nth-child(1) {
-    margin-bottom: 52px;
-}
 
 .links {
     gap: 0 68px;
@@ -77,5 +98,90 @@ footer {
     border-radius: 50px 50px 0px 0px;
     background: #000;
     padding: 48px 100px 36px;
+}
+
+@media (max-width: 1600px) {
+    footer {
+        padding: 30px 50px;
+    }
+
+    .links a {
+        font-size: 14px;
+    }
+
+    .copyright p {
+        font-size: 12px;
+    }
+
+    .links {
+        gap: 0 20px;
+    }
+
+    .copyright {
+        margin-top: 20px;
+    }
+
+}
+
+@media (max-width: 1025px) {
+    .links a {
+        font-size: 12px;
+    }
+
+    .links {
+        gap: 0 20px;
+    }
+
+    footer img {
+        max-width: 50%;
+    }
+
+    footer {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .pc {
+        display: none;
+    }
+
+    .mob {
+        display: block;
+    }
+
+    footer {
+        padding: 39px 20px 50px;
+    }
+
+    .mob .links a {
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+        font-family: var(--int);
+        color: #fff;
+        margin-bottom: 30px;
+    }
+
+    .mob .links a:last-child {
+        margin-bottom: 0;
+    }
+
+    .links p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140.5%;
+        font-family: var(--int);
+        color: #fff;
+    }
+
+    .links p a {
+        text-decoration: underline !important;
+        font-size: 16px !important;
+        text-transform: none !important;
+    }
 }
 </style>

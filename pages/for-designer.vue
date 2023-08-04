@@ -1,7 +1,7 @@
 <template>
     <div class="designer">
         <div class="d-flex designer__block">
-            <img src="@/assets/img/designer.png" alt="">
+            <img src="@/assets/img/designer.png" class="img-fluid" alt="">
             <div>
                 <h1>Заработай на своих навыках в дизайне</h1>
 
@@ -95,5 +95,65 @@ ol {
 
 .designer {
     padding: 140px 100px 72px;
+}
+
+@media (max-width: 1600px) {
+    .designer__block h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .designer__block p,
+    ul,
+    li,
+    ol {
+        font-size: 18px;
+    }
+
+    .designer {
+        padding: 140px 50px 72px;
+    }
+
+    .designer__block a {
+        margin-top: 20px;
+    }
+
+    .designer__block img {
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .designer {
+        padding: 140px 20px 50px;
+    }
+
+    .designer__block {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .designer__block h1 {
+        font-size: 24px;
+    }
+
+    .designer__block img {
+        max-width: 100%;
+    }
+
+    .designer__block p,
+    ul,
+    li,
+    ol {
+        font-size: 16px;
+    }
+
+    .designer__block a {
+        max-width: 100%;
+        width: 100%;
+        padding: 10px 0;
+        text-align: center;
+        border: 2px solid #000;
+    }
 }
 </style>

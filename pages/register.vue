@@ -278,4 +278,58 @@ useSeoMeta({
     flex-direction: column;
     align-items: center;
 }
+
+@media (max-width: 1024px) {
+    .form__body input {
+        width: 100%;
+        height: 45px;
+        font-size: 20px;
+        border: 2px solid #000;
+    }
+
+    .form__body button {
+        font-size: 16px;
+        padding: 13px 0;
+        border: 2px solid #000;
+    }
+
+    .form__body span {
+        font-size: 16px;
+    }
+
+    .login {
+        flex-direction: column;
+        padding: 50px 20px 0;
+    }
+
+    .form__body,
+    .cal {
+        width: 100%;
+    }
+
+    .form__body h1 {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+
+    .login__form {
+        background: transparent;
+        padding: 0;
+        margin-bottom: 100px;
+    }
+
+    .switch-button button {
+        border: 0px solid #000;
+        border-radius: 8px;
+    }
+
+    .switch-button {
+        border: 2px solid #000;
+    }
+
+    .custom-checkbox {
+        margin-bottom: 20px;
+    }
+}
 </style>

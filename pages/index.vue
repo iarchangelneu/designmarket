@@ -5,13 +5,14 @@
                 ref="swiper">
                 <!-- Слайды -->
                 <swiper-slide>
-                    <div class="d-flex">
+                    <div class="d-flex mainslide">
+                        <h1 class="mobtitle">Шаблон сайта строительной компании</h1>
                         <img class="img-fluid" src="@/assets/img/mainsl.png" alt="" style="">
 
                         <div class="ml-5">
-                            <h1>Шаблон сайта строительной компании</h1>
+                            <h1 class="pctitle">Шаблон сайта строительной компании</h1>
 
-                            <div>
+                            <div class="mainbtn">
                                 <button>ПОДРОБНЕЕ</button>
                             </div>
                         </div>
@@ -79,7 +80,7 @@
             <h1>Акции и предложения</h1>
             <swiper :slidesPerView="1" :pagination="pagination__sales" :modules="modules" class="mySwiper2">
                 <swiper-slide>
-                    <div class="d-flex">
+                    <div class="d-flex calo">
                         <div class="bigimg">
                             <img src="@/assets/img/sale1.png" alt="">
                             <div class="smallhover">
@@ -141,7 +142,7 @@
                     </div>
                 </swiper-slide>
                 <swiper-slide>
-                    <div class="d-flex">
+                    <div class="d-flex calo">
                         <div class="bigimg">
                             <img src="@/assets/img/sale1.png" alt="">
                             <div class="smallhover">
@@ -285,6 +286,81 @@
                 </div>
 
             </div>
+
+            <div class="mobcategory">
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat1.svg" alt="">
+                        <span>ОДЕЖДА И МОДА</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat2.svg" alt="">
+                        <span>ПРЕДПРИЯТИЯ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat3.svg" alt="">
+                        <span>ЕДА И РЕСТОРАНЫ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat4.svg" alt="">
+                        <span>ОБРАЗОВАНИЕ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat5.svg" alt="">
+                        <span>ПУТЕШЕСТВИЯ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat6.svg" alt="">
+                        <span>РАЗВЛЕЧЕНИЯ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat7.svg" alt="">
+                        <span>ТЕХНИКА</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat8.svg" alt="">
+                        <span>АВТОМОБИЛИ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat9.svg" alt="">
+                        <span>МЕДИЦИНА</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat10.svg" alt="">
+                        <span>НЕДВИЖИМОСТЬ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat11.svg" alt="">
+                        <span>ПИТОМЦЫ</span>
+                    </div>
+                </div>
+                <div class="mobcategory__item">
+                    <div class="text-center">
+                        <img src="@/assets/img/cat12.svg" alt="">
+                        <span>ФИНАНСЫ</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="textblock d-flex">
@@ -309,7 +385,7 @@
                     <div class="w-100 text-center pop__type">
                         <h3>доставка еды</h3>
                     </div>
-                    <img src="@/assets/img/pop1.png" alt="">
+                    <img src="@/assets/img/pop1.png" alt="" class="img-fluid">
 
                     <div class="price">
                         11 540 ₸
@@ -319,7 +395,7 @@
                     <div class="w-100 text-center pop__type">
                         <h3>автосалон</h3>
                     </div>
-                    <img src="@/assets/img/pop2.png" alt="">
+                    <img src="@/assets/img/pop2.png" alt="" class="img-fluid">
 
                     <div class="price">
                         11 540 ₸
@@ -329,7 +405,7 @@
                     <div class="w-100 text-center pop__type">
                         <h3>уходовая косметика</h3>
                     </div>
-                    <img src="@/assets/img/pop3.png" alt="">
+                    <img src="@/assets/img/pop3.png" alt="" class="img-fluid">
 
                     <div class="price">
                         11 540 ₸
@@ -339,7 +415,7 @@
                     <div class="w-100 text-center pop__type">
                         <h3>школа программирования</h3>
                     </div>
-                    <img src="@/assets/img/pop4.png" alt="">
+                    <img src="@/assets/img/pop4.png" alt="" class="img-fluid">
 
                     <div class="price">
                         11 540 ₸
@@ -349,7 +425,7 @@
                     <div class="w-100 text-center pop__type">
                         <h3>доставка еды</h3>
                     </div>
-                    <img src="@/assets/img/pop1.png" alt="">
+                    <img src="@/assets/img/pop1.png" alt="" class="img-fluid">
 
                     <div class="price">
                         11 540 ₸
@@ -359,7 +435,7 @@
                     <div class="w-100 text-center pop__type">
                         <h3>автосалон</h3>
                     </div>
-                    <img src="@/assets/img/pop2.png" alt="">
+                    <img src="@/assets/img/pop2.png" alt="" class="img-fluid">
 
                     <div class="price">
                         11 540 ₸
@@ -428,6 +504,14 @@ useSeoMeta({
 })
 </script>
 <style>
+.mobcategory {
+    display: none;
+}
+
+.mobtitle {
+    display: none;
+}
+
 .lala {
     border-radius: 50px !important;
     border: 3px solid #FFF !important;
@@ -470,7 +554,7 @@ useSeoMeta({
     position: absolute;
     right: 0;
     bottom: 0;
-    border-radius: 50px 0px;
+    border-radius: 30px 0px;
     background: linear-gradient(90deg, #39007F 0%, #15D0FF 100%);
     padding: 9px 26px;
 
@@ -880,5 +964,439 @@ section {
 .main img {
     max-width: 1060px;
     max-height: 614px;
+}
+
+@media (max-width: 1800px) {
+    .main img {
+        max-width: 861px;
+    }
+
+    .main h1 {
+        font-size: 65px;
+    }
+
+    .calo {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .smallimgs {
+        margin-left: 0;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 1670px) {
+    .navslider {
+        right: 0;
+    }
+
+    section {
+        padding: 140px 50px 0;
+    }
+
+    .sales h1,
+    .categories h1,
+    .popular h1 {
+        font-size: 45px;
+    }
+
+    .bigcat img {
+        max-width: 50%;
+    }
+
+    .bigcat {
+        padding: 30px 31px 10px
+    }
+
+    .cat {
+        padding: 15px 12px 15px 15px;
+    }
+
+    .cat img {
+        max-width: 30%;
+    }
+
+    .cat span,
+    .bigcat span {
+        font-size: 16px;
+    }
+
+    .textblock img {
+        max-width: 50%;
+    }
+
+    .popular__block {
+        justify-content: center;
+    }
+
+    .textblock {
+        /* align-items: flex-start; */
+    }
+
+    .textblock p:first-of-type {
+        margin-bottom: 20px;
+    }
+
+    .textblock h2 {
+        font-size: 35px;
+        margin-bottom: 20px;
+        line-height: 110%;
+    }
+
+    .textblock p {
+        font-size: 18px;
+    }
+
+    .textblock button {
+        margin-top: 20px;
+    }
+
+    .textblock button {
+        font-size: 18px;
+    }
+
+    .linktoshop a {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 1500px) {
+    .main img {
+        max-width: 761px;
+    }
+
+    .main h1 {
+        font-size: 55px;
+    }
+
+    .main button {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .main img {
+        max-width: 561px;
+    }
+
+    .main h1 {
+        font-size: 35px;
+    }
+
+    .swiper-pagination2 {
+        font-size: 20px;
+    }
+
+    .main button {
+        padding: 18px 50px;
+    }
+}
+
+@media (max-width: 1025px) {
+    section {
+        padding: 140px 30px 0;
+    }
+}
+
+@media (max-width: 1024px) {
+    .mobtitle {
+        display: block;
+    }
+
+    .pctitle {
+        display: none;
+    }
+
+    .mainslide {
+        flex-direction: column;
+
+    }
+
+    .main img {
+        max-width: 100%;
+    }
+
+    .mainbtn {
+        text-align: left;
+    }
+
+    .main h1 {
+        font-size: 24px;
+    }
+
+    .main button {
+        font-size: 16px;
+        padding: 13px 48px;
+    }
+
+    .navslider {
+        margin-top: 20px;
+    }
+
+    .swiper-button-prev2 img,
+    .swiper-button-next2 img {
+        max-width: 75%;
+    }
+
+    .swiper-pagination2 {
+        margin-right: 5%;
+    }
+
+    .cal {
+        margin: 0 15px 0 0;
+    }
+
+    .swiper-pagination2 {
+        font-size: 22px;
+    }
+
+    .mainslide div {
+        margin-left: 0 !important;
+    }
+
+    .sales {
+        margin-top: 20px;
+    }
+
+    .sales h1,
+    .categories h1,
+    .popular h1 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .bigimg img {
+        max-width: 100%;
+    }
+
+    .smallsh img {
+        max-width: 100%;
+    }
+
+    .smallsh {
+        max-width: 48%;
+    }
+
+    .calo {
+        gap: 25px;
+    }
+
+    .smallimgs {
+        justify-content: left;
+        gap: 25px;
+    }
+
+    section {
+        padding: 140px 20px 0;
+    }
+
+    .category {
+        display: none !important;
+    }
+
+    .mobcategory {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .mobcategory__item {
+        border-radius: 20px;
+        border: 3px solid #000;
+        background: #FFF;
+        padding: 17px 20px;
+        width: 40%;
+    }
+
+    .mobcategory__item img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .mobcategory__item span {
+        display: block;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 130%;
+        font-family: var(--int);
+        color: #000;
+        margin-top: 14px;
+    }
+
+    .textblock {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .textblock img {
+        max-width: 100%;
+    }
+
+    .textblock h2 {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    .textblock p {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .textblock p:first-of-type {
+        margin-bottom: 10px;
+    }
+
+    .textblock button {
+        width: 100%;
+        padding: 16px 0;
+        font-size: 20px;
+    }
+
+    .popular {
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+    .pop__type h3 {
+        font-size: 12px;
+    }
+
+    .pop__type {
+        padding: 5px 0;
+    }
+
+    .price {
+        border-radius: 15px 0px;
+        font-size: 16.667px;
+        padding: 3px 10px;
+    }
+
+    .linktoshop a {
+        width: 100%;
+        padding: 15px 0;
+        font-size: 20px;
+        display: block;
+    }
+
+    .linktoshop {
+        margin-top: 30px;
+    }
+
+    .popular__item {
+        width: 100%;
+    }
+
+    .sale,
+    .sale2 {
+        border-radius: 0 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .mobcategory__item {
+        max-width: 165px;
+        width: 165px;
+    }
+
+    .mobcategory__item span {
+        font-size: 15px;
+    }
+
+    .main button {
+        font-size: 16px;
+        padding: 13px 48px;
+        max-width: 196px;
+    }
+
+    .navslider {
+        margin-top: 20px;
+        max-width: 134px;
+    }
+
+    .swiper-button-prev2,
+    .swiper-button-next2 {
+        width: 53px;
+        height: 47px;
+    }
+
+    .swiper-button-prev2 img,
+    .swiper-button-next2 img {
+        max-width: 100%;
+        height: 100%;
+    }
+
+    .swiper-pagination2 {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    .cal {
+        margin: 0 10px;
+    }
+
+    .smallhover {
+        border-radius: 20px;
+        opacity: 1;
+        backdrop-filter: none;
+    }
+
+    .smallsh {
+        max-width: 45%;
+    }
+
+    .smallhover button {
+        font-size: 16px;
+        display: none;
+
+    }
+
+    .sale span,
+    .sale2 span {
+        padding: 3px 11px;
+        font-size: 16px;
+    }
+
+    .smallsh img {
+        max-width: 172px;
+    }
+
+    .smallimgs {
+        gap: 10px 20px;
+    }
+
+    .calo {
+        gap: 10px 20px;
+    }
+
+    .main button {
+        border: 2px solid #000;
+    }
+}
+
+@media (max-width: 389px) {
+    .smallsh img {
+        max-width: 162px;
+    }
+
+    .mobcategory__item span {
+        font-size: 14px;
+    }
+
+    .mobcategory__item {
+        max-width: 156px;
+    }
+}
+
+@media (max-width: 374px) {
+    .mobcategory__item {
+        width: 100%;
+        max-width: 100%;
+    }
 }
 </style>

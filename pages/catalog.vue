@@ -438,11 +438,13 @@ hr {
     border-radius: 33.073px 33.073px 0px 0px;
     background: #000;
     padding: 8px 0;
+    display: block !important;
 }
 
 .catalog__block {
     margin-top: 40px;
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 26px;
 }
@@ -489,5 +491,118 @@ hr {
 
 .catalog {
     padding: 140px 100px 72px;
+}
+
+@media (max-width: 1440px) {
+    .catalog {
+        padding: 140px 50px 72px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .catalog__block a {
+        width: 100%;
+    }
+
+    .catalog__item img {
+        width: 100%;
+        max-height: 305px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .catalog h1 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .catalog {
+        padding: 140px 20px 50px;
+    }
+
+    .catalog__filters {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .catalog__filters button {
+        width: 100%;
+        justify-content: space-between;
+        padding: 10px 20px;
+        font-size: 20px;
+    }
+
+    .catalog__block {
+        margin-top: 20px;
+        gap: 20px;
+    }
+
+    .category {
+        padding: 5px 0;
+    }
+
+    .category h2 {
+        font-size: 12px;
+        font-weight: 400;
+    }
+
+    .price {
+        padding: 3px 10px;
+        font-size: 16px;
+    }
+
+    .sort__body small {
+        font-size: 14px;
+    }
+
+    .filter__body {
+        left: 0;
+        padding: 20px 20px 0;
+        width: 100%;
+    }
+
+    .filters__category {
+        flex-direction: column;
+    }
+
+    .filters__category label {
+        display: block;
+    }
+
+    .custom-checkbox:last-child {
+        margin-bottom: 26px !important;
+    }
+
+    .custom-checkbox {
+        margin-bottom: 26px;
+    }
+
+    .price__filter input {
+        max-width: 145px;
+        font-size: 20px;
+    }
+
+    .price__filter {
+        gap: 4px;
+    }
+
+    .filter__body h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .custom-checkbox p {
+        font-size: 16px;
+    }
+
+    .showmore button {
+        font-size: 20px;
+        padding: 10px 60px;
+    }
+
+    .showmore {
+        margin-top: 30px;
+    }
+
 }
 </style>

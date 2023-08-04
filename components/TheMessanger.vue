@@ -82,8 +82,7 @@
             </div>
 
             <div class="messanger__send d-flex">
-                <input type="text" class="w-100" v-model="textMessage"
-                    placeholder="Введите сообщение... Это для теста того, как выглядит когда тебе пишут"
+                <input type="text" class="w-100" v-model="textMessage" placeholder="Введите сообщение..."
                     @keydown.enter.prevent="sendMessage">
                 <button @click="sendMessage"><img src="@/assets/img/send.svg" alt=""></button>
             </div>
@@ -233,7 +232,7 @@ input:checked+.slider:before {
 }
 
 .messanger__send {
-    margin-top: 67px;
+    margin-top: 10px;
     gap: 20px;
 }
 
@@ -354,5 +353,53 @@ input:checked+.slider:before {
 .messanger {
     margin-top: 54px;
     gap: 0 40px;
+}
+
+@media (max-width: 1440px) {
+    .messanger__chatbox h3 {
+        font-size: 20px;
+    }
+
+    .message__item p {
+        font-size: 16px;
+    }
+
+    .message__item {
+        padding: 10px;
+    }
+
+    .messanger__chatbox {
+        padding: 20px;
+    }
+
+    .messanger {
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .name h3,
+    .name small {
+        font-size: 18px;
+    }
+
+    .messanger__item p {
+        font-size: 14px;
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .messanger__list {
+        display: none;
+    }
+
+    .messanger__send input {
+        font-size: 16px;
+        padding: 15px;
+    }
+
+    .message {
+        margin-bottom: 20px;
+    }
 }
 </style>

@@ -1,14 +1,37 @@
 <template>
     <div class="account">
         <h1>личный кабинет</h1>
+        <div class="d-flex justify-content-between w-100 crack">
+            <div v-if="tabs != 4"></div>
+            <div class="backtochat" v-if="tabs == 4">
+                <button @click="tabs = 2">
+                    <img src="@/assets/img/backarrow.svg" alt="">
+                    НАЗАД
+                </button>
+            </div>
+            <div class="tabs d-flex align-items-center justify-content-end pc">
 
-        <div class="tabs d-flex align-items-center justify-content-end">
-
-            <button :class="[{ 'active': tabs == 0 }]" @click="tabs = 0">МОИ ПОКУПКИ</button>
-            <button :class="[{ 'active': tabs == 1 }]" @click="tabs = 1">ТРАНЗАКЦИИ</button>
-            <button :class="[{ 'active': tabs == 2 }, { 'active': tabs == 4 }]" @click="tabs = 2">ОБРАТНАЯ СВЯЗЬ</button>
-            <button :class="[{ 'active': tabs == 3 }]" @click="tabs = 3">АККАУНТ</button>
+                <button :class="[{ 'active': tabs == 0 }]" @click="tabs = 0">МОИ ПОКУПКИ</button>
+                <button :class="[{ 'active': tabs == 1 }]" @click="tabs = 1">ТРАНЗАКЦИИ</button>
+                <button :class="[{ 'active': tabs == 2 }, { 'active': tabs == 4 }]" @click="tabs = 2">ОБРАТНАЯ
+                    СВЯЗЬ</button>
+                <button :class="[{ 'active': tabs == 3 }]" @click="tabs = 3">АККАУНТ</button>
+            </div>
         </div>
+
+        <div class="tabs mob">
+            <div>
+                <button :class="[{ 'active': tabs == 0 }]" @click="tabs = 0">МОИ ПОКУПКИ</button>
+                <button :class="[{ 'active': tabs == 1 }]" @click="tabs = 1">ТРАНЗАКЦИИ</button>
+            </div>
+            <div>
+                <button :class="[{ 'active': tabs == 2 }, { 'active': tabs == 4 }]" @click="tabs = 2">ОБРАТНАЯ
+                    СВЯЗЬ</button>
+                <button :class="[{ 'active': tabs == 3 }]" @click="tabs = 3">АККАУНТ</button>
+            </div>
+
+        </div>
+
 
         <div class="mysales" v-if="tabs == 0">
             <div class="products__list" v-if="test">
@@ -145,7 +168,7 @@
             <h3>У ВАС ПОКА НЕ БЫЛО ЧАТОВ</h3>
         </div>
 
-        <form class="user">
+        <form class="user" v-if="tabs == 3">
             <div class="user__info d-flex justify-content-center">
                 <div>
                     <label for="email">E-mail</label>
@@ -184,6 +207,27 @@ useSeoMeta({
 })
 </script>
 <style scoped>
+.backtochat button {
+    border-radius: 10px;
+    border: 3px solid #000;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 17px 40px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 110%;
+    font-family: var(--int);
+    color: #000;
+}
+
+.mob {
+    display: none;
+}
+
 .user button {
     margin-top: 40px;
     background: transparent;
@@ -461,6 +505,7 @@ useSeoMeta({
     transition: all .3s ease;
     flex: 1;
     max-width: 250px;
+    white-space: nowrap;
 
     font-size: 24px;
     font-style: normal;
@@ -503,5 +548,351 @@ useSeoMeta({
 
 .account {
     padding: 140px 100px 72px;
+}
+
+@media (max-width: 1440px) {
+    .account {
+        padding: 140px 50px 72px;
+    }
+}
+
+@media (max-width: 1400px) {
+    .products__list span {
+        margin-right: 20px;
+        font-size: 20px;
+    }
+
+    .product__desc p {
+        font-size: 20px;
+    }
+
+    .product__desc small {
+        font-size: 27px;
+    }
+
+    .product__desc {
+        margin-left: 20px;
+    }
+
+    .product__img img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product__img {
+        height: fit-content;
+    }
+
+    .product__links {
+        margin-top: 25px;
+    }
+
+    .product__links a {
+        font-size: 20px;
+        padding: 14px 50px;
+        white-space: nowrap;
+    }
+
+    .products__filters button,
+    .products__filters a {
+        font-size: 20px;
+        padding: 15px 35px;
+    }
+
+    .tabs button {
+        font-size: 20px;
+        padding: 15px;
+    }
+
+    .products__item:last-child {
+        margin-bottom: 0;
+    }
+
+    .chatlist {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .chatlist__item {
+        width: 100%;
+    }
+
+    .user__info label {
+        font-size: 20px;
+    }
+
+    .user__info {
+        gap: 20px;
+
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .user__info {
+        flex-direction: column;
+    }
+
+    .user__info label {
+        font-size: 16px;
+    }
+
+    .user__info input,
+    .user__info textarea {
+        width: 100%;
+        font-size: 16px;
+        margin-bottom: 20px;
+        border: 2px solid #000;
+    }
+
+    .form__footer {
+
+        margin-top: 0;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .form__footer button {
+        flex: none;
+        padding: 13px 16px;
+        border: 2px solid #000;
+        font-size: 16px;
+    }
+
+    .crack {
+        flex-direction: column;
+    }
+
+    .backtochat button {
+        margin-bottom: 10px;
+        font-size: 16px;
+        border: 2px solid #000;
+        width: 100%;
+        padding: 15px;
+        flex: 1;
+        justify-content: space-between;
+    }
+
+    .mob {
+        display: block;
+    }
+
+    .account {
+        padding: 140px 20px 50px;
+    }
+
+    .pc {
+        display: none !important;
+    }
+
+    .account h1 {
+        font-size: 32px;
+    }
+
+    .products__list span {
+        display: none;
+    }
+
+    .products__item {
+        flex-direction: column;
+    }
+
+    .product__img img {
+        width: 100%;
+        max-height: 165px;
+    }
+
+    .product__img img {}
+
+    .product__desc {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .products__list span:last-child {
+        display: block !important;
+        font-size: 16px !important;
+    }
+
+    .product__desc small {
+        font-size: 20px;
+    }
+
+    .product__links {
+        justify-content: space-between !important;
+        gap: 10px;
+    }
+
+    .product__links a {
+        flex: 1;
+        text-align: center;
+        border: 2px solid #000;
+        padding: 13px 15px;
+        font-size: 14px;
+        text-transform: none;
+    }
+
+    .product__desc div:first-child {
+        align-items: flex-end;
+    }
+
+    .product__desc p {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    .products__filters button,
+    .products__filters a {
+        padding: 13px 17px;
+        font-size: 14px;
+        border: 2px solid #000;
+        font-weight: 400;
+        flex: 1;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .products__list {
+        margin-top: 30px;
+    }
+
+    .tabs div {
+        display: flex;
+        margin-bottom: 10px;
+        /* justify-content: center; */
+    }
+
+    .tabs button {
+        font-size: 16px;
+        border: 2px solid #000;
+        flex: 1;
+        max-width: unset;
+    }
+
+    .products {
+        margin-top: 20px;
+    }
+
+    .filter__body {
+        left: -130%;
+        padding: 20px 20px 0;
+        width: 350px;
+    }
+
+    .filters__category {
+        flex-direction: column;
+    }
+
+    .filters__category label {
+        display: block;
+    }
+
+    .custom-checkbox:last-child {
+        margin-bottom: 26px !important;
+    }
+
+    .custom-checkbox {
+        margin-bottom: 26px;
+    }
+
+    .price__filter input {
+        max-width: 145px;
+        font-size: 20px;
+    }
+
+    .price__filter {
+        gap: 4px;
+    }
+
+    .filter__body h3 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .custom-checkbox p {
+        font-size: 16px;
+    }
+
+    .chatlist__item h3 {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .chatlist__item small {
+        font-size: 16px;
+    }
+
+    .chatlist__item button {
+        font-size: 20px;
+        padding: 15px 30px;
+        border: 2px solid #000;
+    }
+
+    .chatlist__item {
+        padding: 20px;
+    }
+
+    .chatlist__item .text {
+        gap: 20px;
+    }
+
+    .chatlist {
+        gap: 20px;
+    }
+
+    .user button {
+        margin-top: 20px;
+        font-size: 20px;
+        border: 2px solid #000;
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .user__info input {
+        margin-bottom: 10px;
+    }
+
+    .user {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .chatlist__item .text {
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .chatlist__item button {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .filter__body {
+        left: -125%;
+        padding: 20px 20px 0;
+        width: 350px;
+    }
+
+    .products__filters button,
+    .products__filters a {
+        font-size: 14px;
+        flex: 1;
+    }
+
+    .products__list span:last-child {
+        display: block !important;
+        font-size: 14px !important;
+    }
+
+    .product__desc small {
+        font-size: 18px;
+    }
+
+    .product__desc p {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
 }
 </style>

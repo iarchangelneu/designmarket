@@ -59,4 +59,36 @@ useSeoMeta({
 .terms {
     padding: 140px 100px 72px;
 }
+
+@media (max-width: 1440px) {
+    .terms {
+        padding: 140px 50px 72px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .terms {
+        padding: 140px 20px 50px;
+    }
+
+    .terms p {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 140%;
+        font-family: var(--int);
+        color: #000;
+    }
+
+    .terms h1 {
+        text-align: center;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        text-transform: uppercase;
+        font-family: var(--int);
+        color: #000;
+    }
+}
 </style>

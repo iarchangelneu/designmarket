@@ -139,6 +139,7 @@ useSeoMeta({
 
 .category {
     margin-bottom: 25px;
+    display: flex !important;
 }
 
 .name {
@@ -201,5 +202,109 @@ useSeoMeta({
 .product {
     padding: 140px 100px 72px;
     gap: 0 40px;
+}
+
+@media (max-width: 1600px) {
+    .author__price span {
+        font-size: 40px;
+    }
+
+    .author h1 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1440px) {
+    .product {
+        padding: 140px 50px 72px;
+    }
+
+    .about__author p {
+        font-size: 20px;
+    }
+
+    .about__author span {
+        font-size: 20px;
+    }
+
+    .about__author small {
+        font-size: 16px;
+    }
+
+    .author__price span {
+        font-size: 30px;
+    }
+
+    .author__price small {
+        font-size: 20px;
+    }
+
+    .author__price p {
+        font-size: 16px;
+        padding: 0 13px;
+        border-image-slice: 10;
+    }
+
+    .author button {
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width: 1250px) {
+    .author {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .product {
+        padding: 140px 20px 50px;
+        flex-direction: column-reverse;
+        gap: 30px;
+    }
+
+    .author {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .author h1 {
+        font-size: 16px;
+    }
+
+    .about__author p {
+        font-size: 16px;
+    }
+
+    .name,
+    .category {
+        flex-direction: column;
+        justify-content: left;
+        align-items: flex-start;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .about__author {
+        margin-top: 20px;
+    }
+
+    .about__author span {
+        font-size: 16px;
+    }
+
+    .author button {
+        padding: 10px 0;
+        border: 2px solid #000;
+    }
+
+    .author__price span {
+        font-size: 24px;
+    }
+
 }
 </style>

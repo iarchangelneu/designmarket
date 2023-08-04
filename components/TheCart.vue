@@ -153,4 +153,61 @@ export default {
 .active {
     right: 0 !important;
 }
+
+@media (max-width: 1024px) {
+    .cart {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .cart h3 {
+        font-size: 25px;
+    }
+
+    .name {
+        margin-left: 0;
+    }
+
+    .product {
+        flex-direction: column;
+    }
+
+    .product__img {
+        border-radius: 2px;
+    }
+
+    .name p {
+        justify-content: left;
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 10px;
+    }
+
+    .product__img img {
+        width: 100%;
+        max-height: 165px;
+    }
+
+    .name {
+        margin-top: 10px;
+    }
+
+    .name span {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 130%;
+        max-width: 263px;
+    }
+
+    .name img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .cart__footer button {
+        width: 100%;
+        font-size: 16px;
+        padding: 13px 0;
+    }
+}
 </style>

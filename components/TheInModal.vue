@@ -204,4 +204,44 @@ export default {
         margin: 1.75rem auto;
     }
 }
+
+@media (max-width: 500px) {
+    .modalbody {
+        padding: 18px;
+    }
+
+    .modalbody h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .modalbody p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .sendMoney input {
+        max-width: 147px;
+        height: 45px;
+        font-size: 20px;
+    }
+
+    .sendMoney button {
+        font-size: 16px;
+        padding: 12px 34px;
+    }
+
+    .modalfooter button {
+        font-size: 16px;
+    }
+
+    .modal-dialog {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        min-height: calc(100% - 1rem)
+    }
+
+}
 </style>

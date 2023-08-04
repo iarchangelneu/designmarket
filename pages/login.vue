@@ -2,7 +2,7 @@
     <div class="login d-flex">
         <div class="login__form">
             <div class="form__body">
-                <div>
+                <div class="cal">
                     <div class="text-center">
                         <h1>аВТОРИЗАЦИЯ</h1>
                     </div>
@@ -76,7 +76,7 @@ useSeoMeta({
 
 .form__body input {
     display: block;
-    width: 100%;
+    width: 625px;
     margin-bottom: 20px;
     border-radius: 10px;
     border: 3px solid #000;
@@ -127,5 +127,46 @@ useSeoMeta({
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media (max-width: 1024px) {
+    .form__body input {
+        width: 100%;
+        height: 45px;
+        font-size: 20px;
+        border: 2px solid #000;
+    }
+
+    .form__body button {
+        font-size: 16px;
+        padding: 13px 0;
+        border: 2px solid #000;
+    }
+
+    .form__body span {
+        font-size: 16px;
+    }
+
+    .login {
+        flex-direction: column;
+        padding: 50px 20px 0;
+    }
+
+    .form__body,
+    .cal {
+        width: 100%;
+    }
+
+    .form__body h1 {
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+
+    .login__form {
+        background: transparent;
+        padding: 0;
+        margin-bottom: 100px;
+    }
 }
 </style>
