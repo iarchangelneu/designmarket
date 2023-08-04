@@ -734,6 +734,7 @@ svg:hover stop:last-child {
     background: transparent;
 
     color: #fff;
+    font-family: var(--int);
     text-transform: uppercase;
     transition: all .3s ease;
 }
