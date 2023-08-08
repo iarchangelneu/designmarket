@@ -6,43 +6,37 @@
         </div>
 
         <div class="cart__body w-100">
-            <div class="product d-flex">
+            <div class="product d-flex" v-for="item in cart" :key="item.id">
                 <div class="product__img">
-                    <img src="@/assets/img/cart1.png" alt="">
+                    <img :src="this.pathUrl + item.products.main_image" alt="">
                 </div>
                 <div class="name w-100">
                     <div class="d-flex justify-content-between align-items-start">
-                        <span>Шаблон дизайна сайта “Доставка еды”</span>
-                        <img src="@/assets/img/delete.svg" alt="" style="cursor: pointer;">
+                        <span>{{ item.products.name }}</span>
+                        <img src="@/assets/img/delete.svg" alt="" style="cursor: pointer;" @click="deleteFromCart(item.id)">
                     </div>
-                    <p class="mb-0">11 540 ₸</p>
-                </div>
-            </div>
-            <div class="product d-flex">
-                <div class="product__img">
-                    <img src="@/assets/img/cart1.png" alt="">
-                </div>
-                <div class="name w-100">
-                    <div class="d-flex justify-content-between align-items-start">
-                        <span>Шаблон дизайна сайта “Доставка еды”</span>
-                        <img src="@/assets/img/delete.svg" alt="" style="cursor: pointer;">
-                    </div>
-                    <p class="mb-0">11 540 ₸</p>
+                    <p class="mb-0">{{ (Math.floor(item.products.price - ((item.products.price * item.products.discount) /
+                        100))).toLocaleString() }} ₸</p>
                 </div>
             </div>
 
         </div>
 
         <div class="cart__footer text-center">
-            <button>перейти к оформлению</button>
+            <button @click="buyProduct()">перейти к оформлению</button>
         </div>
     </div>
 </template>
 <script>
+import global from '~/mixins/global';
+import axios from 'axios'
 export default {
+    mixins: [global],
     data() {
         return {
             closed: false,
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            cart: [],
         }
     },
     methods: {
@@ -50,7 +44,57 @@ export default {
             let sc = $(".cart")[0];
             sc.style.right = '-2000px';
         },
-    }
+        getCart() {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/buyer/all-product-basket`;
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+
+            axios
+                .get(path)
+                .then(response => {
+                    this.cart = response.data
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
+        deleteFromCart(id) {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/buyer/delete-product-basket/${id}`
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios
+                .put(path)
+                .then(response => {
+                    console.log(response)
+                    this.getCart()
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
+        buyProduct() {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/buyer/placed-basket`
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios
+                .get(path)
+                .then(response => {
+                    console.log(response)
+                    this.getCart()
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
+    },
+
+    mounted() {
+        const accType = localStorage.getItem('accountType')
+        if (accType == 'buyer-account') {
+            // this.getCart()
+        }
+    },
+
 }
 </script>
 <style scoped>

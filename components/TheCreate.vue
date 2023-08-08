@@ -1,17 +1,17 @@
 <template>
     <div class="createproduct">
-        <form class="creat__body w-100">
+        <div class="creat__body w-100">
             <div class="d-flex creat__body w-100">
 
                 <div>
                     <label for="name">Название товара</label>
-                    <input type="text" id="name" name="name" placeholder="Введите название товара" required>
+                    <input type="text" id="name" name="name" v-model="name" placeholder="Введите название товара" required>
 
                     <div class="d-flex align-items-end category__select">
                         <div>
                             <label for="category">Выберите категорию</label>
-                            <select name="category" id="category" v-model="selectedCategory" :disabled="hasSelectedCategory"
-                                required>
+                            <select name="add_category" id="category" v-model="selectedCategory"
+                                :disabled="hasSelectedCategory" required>
                                 <option value="" disabled>Выбор категории</option>
                                 <option v-for="(category, index) in categories" :value="index" :key="index">{{ category
                                 }}
@@ -44,10 +44,10 @@
                     </div>
 
                     <div class="mt-4">
-                        <label for="file">Название товара</label>
+                        <label for="file">Загрузка изображения</label>
                         <label class="custom-file-upload" :class="{ 'dragging': isDraggingFile }"
                             @dragover.prevent="handleDragOver" @dragleave="handleDragLeave" @drop="handleDrop">
-                            <input type="file" id="file" name="file" @change="handleFileUpload">
+                            <input type="file" id="file" name="main_image" @change="handleFileUpload">
                             <div class="d-flex align-items-center justify-content-between">
                                 <small>{{ selectedFileName || 'Перетащите файл сюда или откройте вручную' }}</small>
                                 <span>Открыть</span>
@@ -58,14 +58,15 @@
 
                 <div>
                     <div>
-                        <label for="desc">Загрузка файла дизайна</label>
-                        <textarea name="desc" id="desc" cols="30" placeholder="Введите описание товара"></textarea>
+                        <label for="desc">Описание дизайна</label>
+                        <textarea name="description_1" v-model="description" id="desc" cols="30"
+                            placeholder="Введите описание товара"></textarea>
                     </div>
                     <div class="mt-3">
                         <label for="design">Загрузка файла дизайна</label>
                         <label class="custom-file-upload" :class="{ 'dragging': isDraggingFile2 }"
                             @dragover.prevent="handleDragOver2" @dragleave="handleDragLeave2" @drop="handleDrop2">
-                            <input type="file" id="design" name="design" @change="handleFileUpload2">
+                            <input type="file" id="design" name="main_file" @change="handleFileUpload2">
                             <div class="d-flex align-items-center justify-content-between">
                                 <small>{{ selectedDesignName || 'Перетащите файл сюда или откройте вручную' }}</small>
                                 <span>Открыть</span>
@@ -75,17 +76,20 @@
                 </div>
             </div>
             <div class="text-center">
-                <button>ОПУБЛИКОВАТЬ ТОВАР</button>
+                <button @click="submitForm" ref="createProduct">ОПУБЛИКОВАТЬ ТОВАР</button>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
-            discount: null,
+            discount: 0,
             price: null,
+            name: '',
+            description: '',
             categories: [
                 "Развлечения",
                 "Еда и рестораны",
@@ -104,9 +108,13 @@ export default {
             selectedCategories: [],
             fileUpload: null,
             selectedFileName: '',
+            selectedFile: [],
+            selectedPhoto: {},
             isDraggingFile: false,
             selectedDesignName: '',
+            selectedDesign: [],
             isDraggingFile2: false,
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
         }
     },
 
@@ -140,7 +148,7 @@ export default {
         },
         handleFile(file) {
             this.selectedFileName = file ? file.name : '';
-            // хуесос
+            this.selectedFile = file;
         },
         handleFileUpload2(event) {
             const file = event.target.files[0];
@@ -162,8 +170,34 @@ export default {
         },
         handleFile2(file) {
             this.selectedDesignName = file ? file.name : '';
-            // хуесос
-        }
+            this.selectedDesign = file;
+        },
+        async submitForm() {
+            const path = `${this.pathUrl}/api/seller/seller-lk/add-product/`
+            const formData = new FormData();
+            formData.append('name', this.name);
+            formData.append('category', this.selectedCategory + 1);
+            formData.append('price', this.price);
+            formData.append('discount', this.discount);
+            formData.append('main_image', this.selectedFile);
+            formData.append('description_1', this.description);
+            formData.append('main_file', this.selectedDesign);
+            this.$refs.createProduct.disabled = true
+            this.$refs.createProduct.innerHTML = 'СОЗДАЕМ ЗАКАЗ'
+
+            try {
+                const response = await axios.post(path, formData);
+                console.log('Форма успешно отправлена', response);
+                if (response.status == 201) {
+                    this.$refs.createProduct.disabled = false
+                    this.$refs.createProduct.innerHTML = 'Заказ успешно создан!'
+                }
+            } catch (error) {
+                console.error('Ошибка при отправке формы', error);
+                this.$refs.createProduct.disabled = false
+                this.$refs.createProduct.innerHTML = 'Ошибка при создании заказа'
+            }
+        },
     },
     watch: {
         selectedCategory(newVal) {
@@ -173,6 +207,15 @@ export default {
         },
     },
 }
+</script>
+<script setup>
+
+useSeoMeta({
+    title: 'Создание товара | Themes',
+    ogTitle: 'Создание товара | Themes',
+    description: 'Создание товара | Themes',
+    ogDescription: 'Создание товара | Themes',
+})
 </script>
 <style scoped>
 .creat__body button {
@@ -188,6 +231,12 @@ export default {
     font-family: var(--int);
     color: #000;
     margin-top: 54px;
+    transition: all .3s ease;
+}
+
+.creat__body button:hover {
+    color: #fff;
+    background: #000;
 }
 
 .creat__body textarea {

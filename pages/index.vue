@@ -214,152 +214,152 @@
 
             <div class="category d-flex">
                 <div class="cats">
-                    <div class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
 
                         <img class="img-fluid" src="@/assets/img/cat1.svg" alt="">
                         <span>ОДЕЖДА И МОДА</span>
-                    </div>
-                    <div class="cat d-flex align-items-center">
+                    </NuxtLink>
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
                         <img class="img-fluid" src="@/assets/img/cat2.svg" alt="">
                         <span>ПРЕДПРИЯТИЯ</span>
-                    </div>
+                    </NuxtLink>
                 </div>
-                <div class="bigcat">
+                <NuxtLink to="/catalog" class="bigcat">
                     <div class="text-center">
                         <img class="img-fluid" src="@/assets/img/cat3.svg" alt="">
                         <span class="d-block">ЕДА И РЕСТОРАНЫ</span>
                     </div>
-                </div>
+                </NuxtLink>
                 <div class="cats">
-                    <div class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
 
                         <img class="img-fluid" src="@/assets/img/cat4.svg" alt="">
                         <span>ОБРАЗОВАНИЕ</span>
-                    </div>
-                    <div class="cat d-flex align-items-center">
+                    </NuxtLink>
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
                         <img class="img-fluid" src="@/assets/img/cat5.svg" alt="">
                         <span>ПУТЕШЕСТВИЯ</span>
-                    </div>
+                    </NuxtLink>
                 </div>
-                <div class="bigcat mr-0">
+                <NuxtLink to="/catalog" class="bigcat mr-0">
                     <div class="text-center">
                         <img class="img-fluid" src="@/assets/img/cat6.svg" alt="">
                         <span class="d-block">РАЗВЛЕЧЕНИЯ</span>
                     </div>
-                </div>
+                </NuxtLink>
             </div>
 
             <div class="category d-flex" style="margin-top: 17px;">
-                <div class="bigcat ml-0">
+                <NuxtLink to="/catalog" class="bigcat ml-0">
                     <div class="text-center">
-                        <img class="img-fluid" src="@/assets/img/cat3.svg" alt="">
-                        <span class="d-block">ЕДА И РЕСТОРАНЫ</span>
+                        <img class="img-fluid" src="@/assets/img/cat7.svg" alt="">
+                        <span class="d-block">ТЕХНИКА</span>
                     </div>
-                </div>
+                </NuxtLink>
                 <div class="cats">
-                    <div class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
 
-                        <img class="img-fluid" src="@/assets/img/cat1.svg" alt="">
-                        <span>ОДЕЖДА И МОДА</span>
-                    </div>
-                    <div class="cat d-flex align-items-center">
-                        <img class="img-fluid" src="@/assets/img/cat2.svg" alt="">
-                        <span>ПРЕДПРИЯТИЯ</span>
-                    </div>
+                        <img class="img-fluid" src="@/assets/img/cat8.svg" alt="">
+                        <span>АВТОМОБИЛИ</span>
+                    </NuxtLink>
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                        <img class="img-fluid" src="@/assets/img/cat9.svg" alt="">
+                        <span>МЕДИЦИНА</span>
+                    </NuxtLink>
                 </div>
-                <div class="bigcat">
+                <NuxtLink to="/catalog" class="bigcat">
                     <div class="text-center">
-                        <img class="img-fluid" src="@/assets/img/cat6.svg" alt="">
-                        <span class="d-block">РАЗВЛЕЧЕНИЯ</span>
+                        <img class="img-fluid" src="@/assets/img/cat10.svg" alt="">
+                        <span class="d-block">НЕДВИЖИМОСТЬ</span>
                     </div>
-                </div>
+                </NuxtLink>
                 <div class="cats">
-                    <div class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
 
-                        <img class="img-fluid" src="@/assets/img/cat4.svg" alt="">
-                        <span>ОБРАЗОВАНИЕ</span>
-                    </div>
-                    <div class="cat d-flex align-items-center">
-                        <img class="img-fluid" src="@/assets/img/cat5.svg" alt="">
-                        <span>ПУТЕШЕСТВИЯ</span>
-                    </div>
+                        <img class="img-fluid" src="@/assets/img/cat11.svg" alt="">
+                        <span>ПИТОМЦЫ</span>
+                    </NuxtLink>
+                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                        <img class="img-fluid" src="@/assets/img/cat12.svg" alt="">
+                        <span>ФИНАНСЫ</span>
+                    </NuxtLink>
                 </div>
 
             </div>
 
             <div class="mobcategory">
-                <div class="mobcategory__item">
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat1.svg" alt="">
                         <span>ОДЕЖДА И МОДА</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat2.svg" alt="">
                         <span>ПРЕДПРИЯТИЯ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat3.svg" alt="">
                         <span>ЕДА И РЕСТОРАНЫ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat4.svg" alt="">
                         <span>ОБРАЗОВАНИЕ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat5.svg" alt="">
                         <span>ПУТЕШЕСТВИЯ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat6.svg" alt="">
                         <span>РАЗВЛЕЧЕНИЯ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat7.svg" alt="">
                         <span>ТЕХНИКА</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat8.svg" alt="">
                         <span>АВТОМОБИЛИ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat9.svg" alt="">
                         <span>МЕДИЦИНА</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat10.svg" alt="">
                         <span>НЕДВИЖИМОСТЬ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat11.svg" alt="">
                         <span>ПИТОМЦЫ</span>
                     </div>
-                </div>
-                <div class="mobcategory__item">
+                </NuxtLink>
+                <NuxtLink to="/catalog" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat12.svg" alt="">
                         <span>ФИНАНСЫ</span>
                     </div>
-                </div>
+                </NuxtLink>
             </div>
         </div>
 
@@ -373,79 +373,30 @@
                 <p> Простой интерфейс позволит быстро загрузить работу и начать продажи шаблонов дизайна, не прерывая
                     творческий процесс.</p>
 
-                <button>узнать подробнее</button>
+                <button onclick="window.location.href = '/for-designer'">узнать подробнее</button>
             </div>
         </div>
 
         <div class="popular">
             <h1>популярные дизайны</h1>
-
-            <div class="popular__block d-flex">
-                <NuxtLink to="/" class="popular__item">
+            <div v-if="populars.length <= 0"></div>
+            <div class="popular__block d-flex" v-else>
+                <NuxtLink class="popular__item" v-for="popular in populars" :key="popular.id"
+                    :to="'/product/' + popular.id">
                     <div class="w-100 text-center pop__type">
-                        <h3>доставка еды</h3>
+                        <h3>{{ popular.name }}</h3>
                     </div>
-                    <img src="@/assets/img/pop1.png" alt="" class="img-fluid">
+                    <img :src="popular.main_image" alt="" class="img-fluid">
 
                     <div class="price">
-                        11 540 ₸
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/" class="popular__item">
-                    <div class="w-100 text-center pop__type">
-                        <h3>автосалон</h3>
-                    </div>
-                    <img src="@/assets/img/pop2.png" alt="" class="img-fluid">
-
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/" class="popular__item">
-                    <div class="w-100 text-center pop__type">
-                        <h3>уходовая косметика</h3>
-                    </div>
-                    <img src="@/assets/img/pop3.png" alt="" class="img-fluid">
-
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/" class="popular__item">
-                    <div class="w-100 text-center pop__type">
-                        <h3>школа программирования</h3>
-                    </div>
-                    <img src="@/assets/img/pop4.png" alt="" class="img-fluid">
-
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/" class="popular__item">
-                    <div class="w-100 text-center pop__type">
-                        <h3>доставка еды</h3>
-                    </div>
-                    <img src="@/assets/img/pop1.png" alt="" class="img-fluid">
-
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </NuxtLink>
-                <NuxtLink to="/" class="popular__item">
-                    <div class="w-100 text-center pop__type">
-                        <h3>автосалон</h3>
-                    </div>
-                    <img src="@/assets/img/pop2.png" alt="" class="img-fluid">
-
-                    <div class="price">
-                        11 540 ₸
+                        {{ popular.price.toLocaleString() }} ₸
                     </div>
                 </NuxtLink>
 
             </div>
 
             <div class="text-center linktoshop">
-                <NuxtLink to="/">Посмотреть все</NuxtLink>
+                <NuxtLink to="/catalog">Посмотреть все</NuxtLink>
             </div>
         </div>
 
@@ -459,7 +410,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
+import axios from 'axios'
 export default {
     components: {
         Swiper,
@@ -483,14 +434,26 @@ export default {
             },
             currentSlideIndex: 0,
             totalSlides: 0,
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            populars: [],
         };
     },
     methods: {
-
+        getPopular() {
+            const path = `${this.pathUrl}/api/products/popular-product`
+            axios
+                .get(path)
+                .then(response => {
+                    this.populars = response.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
     },
-    watch: {
-
-    },
+    mounted() {
+        this.getPopular()
+    }
 
 
 };
@@ -504,6 +467,16 @@ useSeoMeta({
 })
 </script>
 <style>
+.bigimg {
+    max-width: 855px;
+    max-height: 480px;
+}
+
+.smallsh {
+    max-width: 412px;
+    max-height: 230px;
+}
+
 .mobcategory {
     display: none;
 }
@@ -548,6 +521,18 @@ useSeoMeta({
 
 .popular__item {
     position: relative;
+    border-radius: 50px;
+    height: fit-content;
+    background: #fff;
+    box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
+}
+
+.popular__item img {
+    width: 43.75vw;
+    height: 20.625vw;
+    object-fit: cover;
+    max-height: 396px;
+    border-radius: 50px;
 }
 
 .price {
@@ -995,7 +980,15 @@ section {
     }
 
     section {
-        padding: 140px 50px 0;
+        padding: 140px 80px 0;
+    }
+
+    .popular__item {
+        width: 100%;
+    }
+
+    .popular__item img {
+        width: 100%;
     }
 
     .sales h1,
@@ -1103,6 +1096,10 @@ section {
 }
 
 @media (max-width: 1024px) {
+    .popular__item img {
+        width: 100%;
+    }
+
     .mobtitle {
         display: block;
     }
@@ -1398,5 +1395,4 @@ section {
         width: 100%;
         max-width: 100%;
     }
-}
-</style>
+}</style>

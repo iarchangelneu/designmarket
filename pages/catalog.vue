@@ -1,5 +1,12 @@
 <template>
     <div class="catalog">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><img src="@/assets/img/lupa.svg" alt=""></span>
+            </div>
+            <input v-model="searchQuery" type="text" class="form-control" ref="searchInput" placeholder="ПОИСК"
+                aria-label="Поиск" aria-describedby="basic-addon1" @input="searchProducts">
+        </div>
         <h1>каталог дизайна</h1>
 
         <div class="catalog__filters d-flex justify-content-end">
@@ -11,13 +18,14 @@
 
                 <div class="sort__body" :class="{ filters__active: sort }">
                     <div class="text-center">
-                        <small>СНАЧАЛА ДЕШЕВЛЕ</small>
+                        <small @click="sortBy('price')">СНАЧАЛА ДЕШЕВЛЕ</small>
                         <hr>
-                        <small>СНАЧАЛА ДОРОЖЕ</small>
+                        <small @click="sortBy('-price')">СНАЧАЛА ДОРОЖЕ</small>
                         <hr>
-                        <small>САМЫЕ НОВЫЕ</small>
+                        <small @click="sortBy('-date_activate')">САМЫЕ НОВЫЕ</small>
                         <hr>
-                        <small>САМЫЕ СТАРЫЕ</small>
+                        <small @click="sortBy('date_activate')">САМЫЕ СТАРЫЕ</small>
+
                     </div>
                 </div>
             </div>
@@ -30,159 +38,47 @@
                 <div class="filter__body" :class="[{ 'filters__active': filter }]">
                     <h3>Цена</h3>
                     <div class="price__filter d-flex align-items-center">
-                        <input type="number" v-model="minPrice" placeholder="От">
+                        <input type="number" v-model="minPrice" placeholder="От" @input="applyFilters">
                         <img src="@/assets/img/filterline.svg" alt="">
-                        <input type="number" v-model="maxPrice" placeholder="До">
+                        <input type="number" v-model="maxPrice" placeholder="До" @input="applyFilters">
                     </div>
 
                     <h3 class="mt-4">КАТЕГОРИИ</h3>
-
                     <div class="d-flex filters__category">
                         <div>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">РАЗВЛЕЧЕНИЯ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ЕДА И РЕСТОРАНЫ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ОБРАЗОВАНИЕ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ОДЕЖДА И МОДА
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">АВТОМОБИЛИ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ПУТЕШЕСТВИЯ
-                                </p>
+                            <label class="custom-checkbox" v-for="(category, index) in categories1" :key="index">
+                                <input type="checkbox" :value="index + 1" v-model="selectedCategories"
+                                    @change="applyFilters">
+                                <p class="checkbox-text m-0">{{ category }}</p>
                             </label>
                         </div>
                         <div>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ПИТОМЦЫ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ПРЕДПРИЯТИЯ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">НЕДВИЖИМОСТЬ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">МЕДИЦИНА
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ФИНАНСЫ
-                                </p>
-                            </label>
-                            <label class="custom-checkbox">
-                                <input type="checkbox" class="" value="0">
-                                <p class="checkbox-text m-0">ТЕХНИКА
-                                </p>
+                            <label class="custom-checkbox" v-for="(category, index) in categories2" :key="index + 6">
+                                <input type="checkbox" :value="index + 7" v-model="selectedCategories"
+                                    @change="applyFilters">
+                                <p class="checkbox-text m-0">{{ category }}</p>
                             </label>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
+        <div v-if="products.length <= 0"></div>
+        <div class="catalog__block" v-else>
 
-        <div class="catalog__block">
-            <NuxtLink :to="'/product'">
+            <NuxtLink v-for="product in products.results" :key="product.id" :to="'/product/' + product.id">
                 <div class="catalog__item">
                     <div class="category">
                         <div class="text-center">
-                            <h2>доставка еды</h2>
+
+                            <h2>{{ categories[product.category] || '' }}</h2>
+
                         </div>
                     </div>
-                    <img src="@/assets/img/shop1.png" alt="">
+                    <img :src="product.main_image" alt="">
                     <div class="price">
-                        11 540 ₸
-                    </div>
-                </div>
-            </NuxtLink>
-            <NuxtLink :to="'/product'">
-                <div class="catalog__item">
-                    <div class="category">
-                        <div class="text-center">
-                            <h2>автосалон</h2>
-                        </div>
-                    </div>
-                    <img src="@/assets/img/shop2.png" alt="">
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </div>
-            </NuxtLink>
-            <NuxtLink :to="'/product'">
-                <div class="catalog__item">
-                    <div class="category">
-                        <div class="text-center">
-                            <h2>уходовая косметика</h2>
-                        </div>
-                    </div>
-                    <img src="@/assets/img/shop3.png" alt="">
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </div>
-            </NuxtLink>
-            <NuxtLink :to="'/product'">
-                <div class="catalog__item">
-                    <div class="category">
-                        <div class="text-center">
-                            <h2>школа программирования</h2>
-                        </div>
-                    </div>
-                    <img src="@/assets/img/shop4.png" alt="">
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </div>
-            </NuxtLink>
-            <NuxtLink :to="'/product'">
-                <div class="catalog__item">
-                    <div class="category">
-                        <div class="text-center">
-                            <h2>доставка еды</h2>
-                        </div>
-                    </div>
-                    <img src="@/assets/img/shop1.png" alt="">
-                    <div class="price">
-                        11 540 ₸
-                    </div>
-                </div>
-            </NuxtLink>
-            <NuxtLink :to="'/product'">
-                <div class="catalog__item">
-                    <div class="category">
-                        <div class="text-center">
-                            <h2>автосалон</h2>
-                        </div>
-                    </div>
-                    <img src="@/assets/img/shop2.png" alt="">
-                    <div class="price">
-                        11 540 ₸
+                        {{ product.price }} ₸
                     </div>
                 </div>
             </NuxtLink>
@@ -194,16 +90,134 @@
     </div>
 </template>
 <script>
+import global from '~/mixins/global';
+import axios from 'axios';
 export default {
+    mixins: [global],
     data() {
         return {
             filter: false,
             sort: false,
+            products: [],
+            minPrice: null,
+            maxPrice: null,
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            categories: {
+                1: "Развлечения",
+                2: "Еда и рестораны",
+                3: "Образование",
+                4: "Одежда и мода",
+                5: "Автомобили",
+                6: "Путешествия",
+                7: "Питомцы",
+                8: "Предприятия",
+                9: "Недвижимость",
+                10: "Медицина",
+                11: "Финансы",
+                12: "Техника",
+            },
+            categories1: ["РАЗВЛЕЧЕНИЯ", "ЕДА И РЕСТОРАНЫ", "ОБРАЗОВАНИЕ", "ОДЕЖДА И МОДА", "АВТОМОБИЛИ", "ПУТЕШЕСТВИЯ"],
+            categories2: ["ПИТОМЦЫ", "ПРЕДПРИЯТИЯ", "НЕДВИЖИМОСТЬ", "МЕДИЦИНА", "ФИНАНСЫ", "ТЕХНИКА"],
+            selectedCategories: [],
+            shouldFocusInput: false,
+            searchQuery: ''
         }
+    },
+    methods: {
+        getProducts() {
+            const path = `${this.pathUrl}/api/products/all-product`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.products = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        sortBy(ordering) {
+            this.sort = false
+            const path = `${this.pathUrl}/api/products/all-product?ordering=${ordering}`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.products = response.data;
+
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+
+        applyFilters() {
+            const params = new URLSearchParams();
+            if (this.minPrice !== null) {
+                params.append('price__gte', this.minPrice);
+            }
+            if (this.maxPrice !== null) {
+                params.append('price__lte', this.maxPrice);
+            }
+
+            if (this.selectedCategories.length > 0) {
+                this.selectedCategories.forEach(category => {
+                    params.append('category__in', category);
+                });
+            }
+            if (this.searchQuery) {
+                params.append('name__icontains', this.searchQuery);
+            }
+
+            this.fetchFilteredProducts(params);
+        },
+        fetchFilteredProducts(params) {
+            const path = `${this.pathUrl}/api/products/all-product?${params.toString()}`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.products = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        searchProducts() {
+            const query = this.searchQuery.trim();
+            if (query) {
+                const queryParams = `?name__icontains=${query}`;
+                this.fetchSearchResults(queryParams);
+            } else {
+                this.getProducts();
+            }
+        },
+        fetchSearchResults(queryParams) {
+            const path = `${this.pathUrl}/api/products/all-product${queryParams}`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.products = response.data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        },
+        checkQueryParam() {
+            const params = new URLSearchParams(window.location.search);
+            this.shouldFocusInput = params.get('search') === 'true';
+        }
+    },
+    mounted() {
+        this.checkQueryParam();
+        if (this.shouldFocusInput) {
+            this.$refs.searchInput.focus();
+        }
+    },
+    created() {
+        this.getProducts()
     }
 }
 </script >
 <script setup>
+
 useSeoMeta({
     title: 'Каталог | Themes',
     ogTitle: 'Каталог | Themes',
@@ -212,6 +226,103 @@ useSeoMeta({
 })
 </script>
 <style scoped>
+.form-control {
+    border-radius: 30px;
+    border: 2px solid #000;
+    background: transparent;
+    border-left: 0;
+    font-family: var(--int);
+    color: #000;
+    padding: 20px 20px;
+    padding-left: 0;
+    box-shadow: none !important;
+    font-size: 14px;
+}
+
+.input-group-text {
+    background: transparent;
+
+    border-radius: 30px;
+    border: 2px solid #000;
+    border-right: 0;
+    padding: 0 10px;
+}
+
+.form-control::placeholder {
+    opacity: 0.5;
+}
+
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 20px 0 0 -55px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #0F172A;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #4F46E5;
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #000;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
 hr {
     margin: 10px 0;
 }
@@ -420,6 +531,13 @@ hr {
 .catalog__item {
     position: relative;
     box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
+    border-radius: 50px;
+}
+
+.catalog__item img {
+    width: 556px;
+    height: 262px;
+    object-fit: cover;
     border-radius: 50px;
 }
 

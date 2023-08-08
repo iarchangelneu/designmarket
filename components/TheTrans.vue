@@ -1,90 +1,89 @@
 <template>
-    <div class="transactions" v-if="!test">
+    <div class="empty" v-if="transactions.length <= 0">
+        <h2>СПИСОК ТРАНЗАКЦИЙ ОТОБРАЗИТСЯ ПОСЛЕ<br> ПЕРВОЙ ПОКУПКИ</h2>
+    </div>
+    <div class="transactions" v-else>
         <table class="table table-borderless text-center pc">
             <thead>
                 <tr>
                     <th>Тип</th>
                     <th>Цена</th>
                     <th>Дата</th>
-                    <th>Время</th>
                     <th>Статус</th>
                     <th>Состояние счета</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Продажа</td>
-                    <td>+ 8 000 ₸</td>
-                    <td>05.12.22</td>
-                    <td>15:47</td>
-                    <td class="success">Совершено</td>
-                    <td>18 000 ₸</td>
+                <tr v-for="item in transactions" :key="item.id">
+                    <td>{{ item.type_operation }}</td>
+                    <td> {{ item.amount.toLocaleString() }} ₸</td>
+                    <td>{{ formatDate(item.date) }}</td>
+                    <td :class="{ success: item.paid == 1, failure: item.paid == 0 }">{{ item.paid == 1 ? 'Совершено' :
+                        item.paid == 0 ? 'Отменено' : item.paid }}</td>
+                    <td>{{ item.amount_now.toLocaleString() }} ₸</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Продажа</td>
                     <td>+ 8 000 ₸</td>
                     <td>05.12.22</td>
                     <td>15:47</td>
                     <td class="failure">Отменено</td>
                     <td>18 000 ₸</td>
-                </tr>
+                </tr> -->
 
             </tbody>
         </table>
         <div class="mob">
-            <div class="transa">
+            <div class="transa" v-for="item in transactions" :key="item.id">
                 <div class="trans__item">
                     <div class="d-flex align-items-center justify-content-between">
-                        <span>Пополнение</span>
-                        <small>05.12.22</small>
-                        <small>15:47</small>
-                        <img src="@/assets/img/succes.svg" alt="">
+                        <span>{{ item.type_operation }}</span>
+                        <small>{{ formatDate(item.date) }}</small>
+                        <img src="@/assets/img/succes.svg" alt="" v-if="item.paid == 1">
+                        <img src="@/assets/img/failure.svg" alt="" v-if="item.paid == 0">
                     </div>
                     <div class="d-flex justify-content-between prices">
                         <div>
                             <span>Цена</span>
-                            <small>+ 8 000 ₸</small>
+                            <small>+ {{ item.amount.toLocaleString() }} ₸</small>
                         </div>
                         <div>
                             <span>Состояние счета</span>
-                            <small>18 000 ₸</small>
+                            <small>{{ item.amount_now.toLocaleString() }} ₸</small>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="transa">
-                <div class="trans__item">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <span>Покупка</span>
-                        <small>05.12.22</small>
-                        <small>15:47</small>
-                        <img src="@/assets/img/failure.svg" alt="">
-                    </div>
-                    <div class="d-flex justify-content-between prices">
-                        <div>
-                            <span>Цена</span>
-                            <small>+ 8 000 ₸</small>
-                        </div>
-                        <div>
-                            <span>Состояние счета</span>
-                            <small>18 000 ₸</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="empty" v-else>
-        <h2>СПИСОК ТРАНЗАКЦИЙ ОТОБРАЗИТСЯ ПОСЛЕ<br> ПЕРВОЙ ПОКУПКИ</h2>
+        </div>
     </div>
 </template>
 <script>
 export default {
+    props: {
+        transactions: [],
+    },
     data() {
         return {
             test: false,
+
         }
+    },
+    methods: {
+        formatDate(dateTime) {
+            // Создаем объект Date из строки времени
+            const date = new Date(dateTime);
+
+            // Получаем отдельные компоненты даты и времени
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = String(date.getFullYear()).slice(-2);
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+
+            // Собираем строку в нужном формате
+            return `${day}.${month}.${year} ${hours}:${minutes}`;
+        },
     }
 }
 </script>

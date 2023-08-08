@@ -1,55 +1,118 @@
 <template>
-    <div class="product d-flex align-items-start">
+    <div v-if="product.length <= 0"></div>
+    <div class="product d-flex align-items-start" v-else>
 
         <div class="product__preview">
-            <img src="@/assets/img/product.png" class="img-fluid" alt="">
+            <img :src="product.main_image" class="img-fluid" alt="">
         </div>
 
         <div class="author">
             <div class="text-center">
-                <h1>шаблон сайта доставка еды</h1>
+                <h1>{{ product.name }}</h1>
             </div>
             <div class="about__author">
                 <div class="d-flex justify-content-between align-items-center name">
                     <p class="mb-0">Автор:</p>
-                    <span>Design Market</span>
+                    <span>{{ seller.first_name }}</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center category">
                     <p class="mb-0">Категория:</p>
-                    <span>Еда и рестораны</span>
+                    <span>{{ category }}</span>
                 </div>
 
                 <p class="mb-0">Описание:</p>
 
-                <small>Универсальный и современный дизайн для создания онлайн-платформы, специализирующейся на доставке еды.
-                    Этот шаблон разработан с учетом потребностей и предпочтений пользователей, а также требований
-                    ресторанов, кафе и других заведений питания, которые хотят расширить свой бизнес и предоставить удобный
-                    сервис заказа еды через интернет.</small>
+                <small>{{ product.description_1 }}</small>
 
             </div>
 
             <div class="author__price d-flex justify-content-between align-items-end">
                 <small>
-                    18 000 ₸
+                    {{ product.price.toLocaleString() }} ₸
                     <img src="@/assets/img/saled.svg" alt="">
                 </small>
-                <span>11 540 ₸</span>
+                <span>{{ (Math.floor(product.price - ((product.price * product.discount) / 100))).toLocaleString() }}
+                    ₸</span>
                 <div class="gradik">
-                    <p class="mb-0">-30%</p>
+                    <p class="mb-0">-{{ product.discount }}%</p>
                 </div>
             </div>
+            <small class="mt-3 ml-2 d-block" ref="apiMessage">{{ apiMessage }}</small>
+            <button class="w-100" ref="cartBtn" @click="addToCart()">В КОРЗИНУ</button>
 
-            <button class="w-100">В КОРЗИНУ</button>
         </div>
     </div>
 </template>
+<script>
+import axios from 'axios'
+export default {
+    data() {
+        return {
+            productId: this.$route.params.id,
+            product: [],
+            seller: [],
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            category: '',
+            apiMessage: '',
+        }
+    },
+    methods: {
+        getProduct() {
+            const path = `${this.pathUrl}/api/products/detail-product/${this.productId}`
+            axios
+                .get(path)
+                .then(response => {
+                    this.product = response.data
+                    this.seller = response.data.seller.user
+                    this.category = response.data.category.category_name
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
+        addToCart() {
+            const path = `${this.pathUrl}/api/buyer/add-product-basket`
+            axios
+                .post(path, {
+                    products: this.product.id,
+                    amount: 1,
+                })
+                .then(response => {
+                    if (response.status == 201) {
+                        this.apiMessage = 'Товар успешно добавлен в корзину!'
+                        this.$refs.apiMessage.classList.add('green')
+                        this.$refs.cartBtn.disabled = true
+                        this.$refs.cartBtn.classList.add('disabled')
+                    }
+                    else {
+                        this.apiMessage = 'Произошла ошибка, попробуйте еще раз'
+                        this.$refs.apiMessage.classList.add('red')
+                        this.$refs.cartBtn.disabled = false
+
+                    }
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        }
+    },
+    mounted() {
+        this.getProduct()
+    }
+}
+</script >
 <script setup>
+const route = useRoute();
+const itemId = route.params.id
+const productDetails = await fetch(`https://b776-5-188-154-93.ngrok-free.app/api/products/detail-product/${itemId}`).then(res => res.json()).then(data => data);
+const title = `${productDetails.name}`
 useSeoMeta({
-    title: 'Товар хуевар | Design Market',
-    ogTitle: 'Товар хуевар  | Design Market',
-    description: 'Товар хуевар  | Design Market',
-    ogDescription: 'Товар хуевар  | Design Market',
+    title: () => title + ' | Design Market',
+    ogTitle: () => title + ' | Design Market',
+    description: () => title + ' | Design Market',
+    ogDescription: () => title + ' | Design Market',
 })
+
 </script>
 <style scoped>
 .author button {
@@ -66,6 +129,22 @@ useSeoMeta({
     font-family: var(--int);
     color: #000;
     transition: all .3s ease;
+}
+
+.red {
+    color: red;
+    font-family: var(--int);
+}
+
+.disabled {
+    opacity: 0.5;
+    background: #000 !important;
+    color: #fff !important;
+}
+
+.green {
+    color: green;
+    font-family: var(--int);
 }
 
 .author button:hover {
@@ -187,16 +266,20 @@ useSeoMeta({
     background: #FFF;
     box-shadow: 0px 0px 15px 0px rgba(47, 59, 163, 0.20);
     padding: 40px;
-    max-width: 31.719vw;
+    width: 31.719vw;
     position: sticky;
     top: 140px;
     bottom: 72px;
 }
 
 .product__preview {
-    max-width: 1071px;
+    width: 55.781vw;
     border-radius: 50px;
     box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
+}
+
+.product__preview img {
+    width: 100%;
 }
 
 .product {
@@ -214,7 +297,7 @@ useSeoMeta({
     }
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1500px) {
     .product {
         padding: 140px 50px 72px;
     }
@@ -258,6 +341,10 @@ useSeoMeta({
 }
 
 @media (max-width: 1024px) {
+    .product__preview {
+        width: 100%;
+    }
+
     .product {
         padding: 140px 20px 50px;
         flex-direction: column-reverse;
@@ -283,8 +370,8 @@ useSeoMeta({
     .name,
     .category {
         flex-direction: column;
-        justify-content: left;
-        align-items: flex-start;
+        justify-content: left !important;
+        align-items: flex-start !important;
         gap: 15px;
         margin-bottom: 20px;
     }

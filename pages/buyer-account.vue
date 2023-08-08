@@ -34,84 +34,7 @@
 
 
         <div class="mysales" v-if="tabs == 0">
-            <div class="products__list" v-if="test">
-                <div class="products__item d-flex">
-                    <span>1.</span>
-                    <div class="product__img">
-                        <img src="@/assets/img/products.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="product__desc w-100">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <p>
-                                    шаблон сайта доставка еды
-                                </p>
-                                <span>Дата покупки: 01.08.23</span>
-                                <h3>АВТОР:
-                                    <small>Александр Иванов</small>
-                                </h3>
-                            </div>
-                            <small>11 540 ₸</small>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-end product__links">
-                            <NuxtLink @click='tabs = 4' style="cursor: pointer;">ЧАТ С ПРОДАВЦОМ</NuxtLink>
-                            <NuxtLink to="/product">СКАЧАТЬ ФАЙЛ</NuxtLink>
-                        </div>
-                    </div>
-                </div>
-                <div class="products__item d-flex">
-                    <span>2.</span>
-                    <div class="product__img">
-                        <img src="@/assets/img/products.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="product__desc w-100">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <p>
-                                    шаблон сайта доставка еды
-                                </p>
-                                <span>Дата покупки: 01.08.23</span>
-                                <h3>АВТОР:
-                                    <small>Александр Иванов</small>
-                                </h3>
-                            </div>
-                            <small>11 540 ₸</small>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-end product__links">
-                            <NuxtLink @click='tabs = 4' style="cursor: pointer;">ЧАТ С ПРОДАВЦОМ</NuxtLink>
-                            <NuxtLink to="/product">СКАЧАТЬ ФАЙЛ</NuxtLink>
-                        </div>
-                    </div>
-                </div>
-                <div class="products__item d-flex ">
-                    <span>3.</span>
-                    <div class="product__img">
-                        <img src="@/assets/img/products.png" class="img-fluid" alt="">
-                    </div>
-
-                    <div class="product__desc w-100">
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <p>
-                                    шаблон сайта доставка еды
-                                </p>
-                                <span>Дата покупки: 01.08.23</span>
-                                <h3>АВТОР:
-                                    <small>Александр Иванов</small>
-                                </h3>
-                            </div>
-                            <small>11 540 ₸</small>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-end product__links">
-                            <NuxtLink @click='tabs = 4' style="cursor: pointer;">ЧАТ С ПРОДАВЦОМ</NuxtLink>
-                            <NuxtLink to="/product">СКАЧАТЬ ФАЙЛ</NuxtLink>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="products__empty" v-if="!test">
+            <div class="products__empty" v-if="buys.length <= 0">
                 <div class="text-center">
                     <h2>У ВАС ПОКА ЧТО НЕ БЫЛО ПОКУПОК<br>
                         ПЕРЕЙТИ К ПОКУПКАМ</h2>
@@ -121,78 +44,172 @@
                     </NuxtLink>
                 </div>
             </div>
+            <div class="products__list" v-else>
+                <div class="products__item d-flex" v-for="(buy, i) in buys" :key="buy.id">
+                    <span>{{ i + 1 }}.</span>
+                    <div class="product__img">
+                        <img :src="buy.products.main_image" alt="">
+                    </div>
+
+                    <div class="product__desc w-100">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p>
+                                    {{ buy.products.name }}
+                                </p>
+                                <span>Дата покупки: {{ formatDate(buy.date) }}</span>
+                                <!-- <h3>АВТОР:
+                                    <small>Александр Иванов</small>
+                                </h3> -->
+                            </div>
+                            <small>{{ buy.products.price.toLocaleString() }} ₸</small>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-end product__links">
+                            <NuxtLink @click='createChat(buy.seller.id, buy.seller.user.first_name)'
+                                style="cursor: pointer;">ЧАТ С ПРОДАВЦОМ
+                            </NuxtLink>
+                            <NuxtLink v-if="buy.products.main_file" :to="buy.products.main_file">СКАЧАТЬ ФАЙЛ
+                            </NuxtLink>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="chatlist d-flex" v-if="tabs == 2">
-            <div class="chatlist__item">
-                <div class="d-flex justify-content-between text">
-                    <h3>alex.ivanov@gmail.com</h3>
-                    <small>23.07.2023 14:47</small>
-                </div>
-
-                <div class="text-right">
-                    <button @click="tabs = 4">ОТКРЫТЬ ЧАТ</button>
-                </div>
+        <div class="chats" v-if="tabs == 2">
+            <div class="chatempty text-center" v-if="chats.length <= 0">
+                <h3>У ВАС ПОКА НЕ БЫЛО ЧАТОВ</h3>
             </div>
-            <div class="chatlist__item">
-                <div class="d-flex justify-content-between text">
-                    <h3>alex.ivanov@gmail.com</h3>
-                    <small>23.07.2023 14:47</small>
-                </div>
+            <div class="chatlist d-flex" v-else>
+                <div class="chatlist__item" v-for="chat in chats" :key="chat.id">
+                    <div class="d-flex justify-content-between text">
+                        <h3>{{ chat.seller.user.first_name }}</h3>
+                        <!-- <small>23.07.2023 14:47</small> -->
+                    </div>
 
-                <div class="text-right">
-                    <button @click="tabs = 4">ОТКРЫТЬ ЧАТ</button>
-                </div>
-            </div>
-            <div class="chatlist__item">
-                <div class="d-flex justify-content-between text">
-                    <h3>alex.ivanov@gmail.com</h3>
-                    <small>23.07.2023 14:47</small>
-                </div>
-
-                <div class="text-right">
-                    <button @click="tabs = 4">ОТКРЫТЬ ЧАТ</button>
-                </div>
-            </div>
-            <div class="chatlist__item">
-                <div class="d-flex justify-content-between text">
-                    <h3>alex.ivanov@gmail.com</h3>
-                    <small>23.07.2023 14:47</small>
-                </div>
-
-                <div class="text-right">
-                    <button @click="tabs = 4">ОТКРЫТЬ ЧАТ</button>
+                    <div class="text-right">
+                        <button @click="openChat(chat.id, chat.seller.user.first_name)">ОТКРЫТЬ ЧАТ</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="chatempty text-center" v-if="!test">
-            <h3>У ВАС ПОКА НЕ БЫЛО ЧАТОВ</h3>
-        </div>
+
 
         <form class="user" v-if="tabs == 3">
             <div class="user__info d-flex justify-content-center">
                 <div>
                     <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email" placeholder="Ваш e-mail">
+                    <input type="email" name="email" id="email" placeholder="Ваш e-mail" v-model="account.email">
                 </div>
                 <div>
                     <label for="password">Пароль</label>
-                    <input type="password" name="password" id="password" placeholder="Ваш пароль">
+                    <input type="password" name="password" id="password" placeholder="Ваш пароль" v-model="password">
                 </div>
             </div>
             <div class="text-center">
-                <button type="button">ВЫЙТИ ИЗ АККАУНТА</button>
+                <button type="button" @click="logOut">ВЫЙТИ ИЗ АККАУНТА</button>
             </div>
         </form>
-        <TheTrans v-if="tabs == 1"></TheTrans>
-        <TheMessanger v-if="tabs == 4"></TheMessanger>
+        <TheTrans v-if="tabs == 1" :transactions="transactions"></TheTrans>
+        <TheMessanger v-if="tabs == 4" :chatId="chatId" :name="chatName"></TheMessanger>
     </div>
 </template>
 <script>
+import global from '~/mixins/global';
+import axios from 'axios';
 export default {
+    mixins: [global],
     data() {
         return {
             tabs: 3,
             test: true,
+            account: [],
+            password: '',
+            chats: [],
+            seller: [],
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            buys: [],
+            sendId: null,
+            chatId: null,
+            myId: null,
+            transactions: []
+        }
+    },
+    methods: {
+        formatDate(dateString) {
+            const date = new Date(dateString);
+            const formattedDate = `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear()}`;
+            return formattedDate;
+        },
+        getAccount() {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/buyer/buyer-lk`;
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.account = response.data
+                    this.myId = response.data.id
+                    this.transactions = response.data.transactions
+
+                })
+                .catch(error => console.log(error));
+        },
+        openChat(chatId, chatName) {
+            this.tabs = 4;
+            this.chatId = chatId;
+            this.chatName = chatName
+        },
+        getBuys() {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/buyer/buyer-lk/my-purchases`
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios
+                .get(path)
+                .then(response => {
+                    this.buys = response.data
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
+        createChat(id, name) {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/messanger/new-chat`
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios
+                .post(path, {
+                    buyer: this.myId,
+                    seller: id,
+                })
+                .then(response => {
+                    const chatId = response.data.chat_id
+                    this.openChat(chatId, name)
+                })
+                .catch(error => console.log(error))
+        },
+        getChats() {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/messanger/all-chats`
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios
+                .get(path)
+                .then(res => {
+                    this.chats = res.data
+                })
+                .catch(error => console.log(error))
+        }
+    },
+    mounted() {
+        const accType = localStorage.getItem('accountType')
+        console.log(accType)
+        if (accType == 'buyer-account') {
+            this.getAccount()
+            this.getChats()
+            this.getBuys()
+        }
+        else {
+            window.location.href = '/login'
         }
     }
 }
@@ -494,8 +511,15 @@ useSeoMeta({
 
 .product__img {
     border-radius: 30px;
-    box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
     height: fit-content;
+    box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
+}
+
+.product__img img {
+    border-radius: 30px;
+    object-fit: cover;
+    width: 29.74vw;
+    height: 268.992px;
 }
 
 .tabs button {
@@ -574,10 +598,7 @@ useSeoMeta({
         margin-left: 20px;
     }
 
-    .product__img img {
-        max-width: 100%;
-        height: auto;
-    }
+
 
     .product__img {
         height: fit-content;

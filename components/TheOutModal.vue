@@ -22,7 +22,8 @@
 
                     <form class="d-flex sendMoney">
                         <input type="text" v-model="count" name="count" id="count" placeholder="100 ₸">
-                        <button type="submit">ВЫВЕСТИ</button>
+                        <input type="number" name="card" id="card" v-model="card_number">
+                        <button type="button" @click="outMoney()">ВЫВЕСТИ</button>
                     </form>
 
                     <div class="modalfooter d-flex">
@@ -38,11 +39,36 @@
     </div>
 </template>
 <script>
+import global from '~/mixins/global';
+import axios from 'axios'
 export default {
+    mixins: [global],
     data() {
         return {
             count: null,
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            card_number: null,
         }
+    },
+    methods: {
+        outMoney() {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/money/pay-return`
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+
+            axios
+                .post(path, {
+                    amount: this.count,
+                    card_number: this.card_number
+                })
+                .then(response => {
+                    console.log(response)
+
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
     }
 }
 </script>

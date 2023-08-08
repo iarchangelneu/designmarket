@@ -6,10 +6,10 @@
                     <div class="text-center">
                         <h1>аВТОРИЗАЦИЯ</h1>
                     </div>
-                    <input type="email" name="email" id="email" placeholder="E-mail">
-                    <input type="password" name="password" id="password" placeholder="Пароль">
+                    <input type="email" name="email" id="email" placeholder="E-mail" v-model="email">
+                    <input type="password" name="password" id="password" placeholder="Пароль" v-model="password">
 
-                    <button class="w-100">Войти</button>
+                    <button class="w-100" @click="login">Войти</button>
                     <div class="text-center">
                         <span>Еще нет аккаунта? <NuxtLink to='/register'>Регистрация</NuxtLink></span>
                     </div>
@@ -24,6 +24,45 @@
         </div>
     </div>
 </template>
+<script>
+import axios from 'axios';
+export default {
+    data() {
+        return {
+            email: '',
+            password: '',
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+        }
+    },
+    methods: {
+        login() {
+            const path = `${this.pathUrl}/api/main/authorization`
+            // const csrf = this.getCSRFToken()
+
+            // axios.defaults.headers.common['X-CSRFToken'] = csrf;
+            axios
+                .post(path, { username: this.email, password: this.password })
+                .then((res) => {
+
+                    if (res.status == 202) {
+
+                        document.cookie = `Authorization=${res.data.token}; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/`;
+                        localStorage.setItem('accountType', res.data.redirect_url)
+                        window.location.href = res.data.redirect_url
+                    }
+                    else {
+
+                    }
+                    console.log(res)
+                })
+                .catch((error) => {
+                    console.log(error);
+                    // this.error = error.response.data.non_field_errors[0]
+                });
+        }
+    }
+}
+</script >
 <script setup>
 useSeoMeta({
     title: 'Авторизация | Themes',

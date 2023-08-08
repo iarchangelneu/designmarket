@@ -9,7 +9,7 @@
                 <div class="links d-flex">
                     <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
                     <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
-                    <NuxtLink to="/buyer-account">личный кабинет</NuxtLink>
+                    <NuxtLink :to="this.accountUrl">личный кабинет</NuxtLink>
                     <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                     <NuxtLink to="/for-designer">для дизайнера</NuxtLink>
                     <img src="@/assets/img/footermob.svg" alt="">
                 </div>
-                <NuxtLink to="/buyer-account">личный кабинет</NuxtLink>
+                <NuxtLink :to="this.accountUrl">личный кабинет</NuxtLink>
                 <NuxtLink to="/terms">пользовательское соглашение</NuxtLink>
                 <NuxtLink to="/polytics">политика конфиденциальности</NuxtLink>
 
@@ -37,7 +37,9 @@
     </footer>
 </template>
 <script>
+import global from '~/mixins/global';
 export default {
+    mixins: [global],
     data() {
         return {
             hideFooterOnPages: ['login', 'register'],

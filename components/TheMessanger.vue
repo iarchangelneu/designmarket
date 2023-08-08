@@ -1,147 +1,256 @@
 <template>
     <div class="messanger d-flex">
-        <div class="messanger__list">
-            <div class="messanger__item">
+
+        <div class="messanger__list" v-if="!isSeller">
+            <div class="messanger__item" v-for="chat in chats" :key="chat.id"
+                @click="newChat(chat.id, chat.seller.user.first_name)">
                 <div class="name d-flex align-items-center">
-                    <h3 class="mb-0">alex.ivanov@gmail.com</h3>
-                    <small>14:47</small>
+                    <h3 class="mb-0">{{ chat.seller.user.first_name }}</h3>
+                    <small>{{ getLastMessageTime(chat) }}</small>
                 </div>
-                <p class="mb-0" v-if="message.length <= 50">{{ message }}</p>
-                <p class="mb-0" v-else>{{ message.slice(0, 50) + '...' }}</p>
+                <p class="mb-0">{{ getLastMessageText(chat) }}</p>
             </div>
-            <div class="messanger__item">
+
+        </div>
+        <div class="messanger__list" v-if="isSeller">
+            <div class="messanger__item" v-for="chat in chats" :key="chat.id">
                 <div class="name d-flex align-items-center">
-                    <h3 class="mb-0">alex.ivanov@gmail.com</h3>
-                    <small>14:47</small>
+                    <h3 class="mb-0">{{ chat.buyer.user.email }}</h3>
+                    <small>{{ getLastMessageTime(chat) }}</small>
                 </div>
-                <p class="mb-0" v-if="message.length <= 50">{{ message }}</p>
-                <p class="mb-0" v-else>{{ message.slice(0, 50) + '...' }}</p>
+                <p class="mb-0">{{ getLastMessageText(chat) }}</p>
             </div>
-            <div class="messanger__item">
-                <div class="name d-flex align-items-center">
-                    <h3 class="mb-0">alex.ivanov@gmail.com</h3>
-                    <small>14:47</small>
-                </div>
-                <p class="mb-0" v-if="message.length <= 50">{{ message }}</p>
-                <p class="mb-0" v-else>{{ message.slice(0, 50) + '...' }}</p>
-            </div>
-            <div class="messanger__item">
-                <div class="name d-flex align-items-center">
-                    <h3 class="mb-0">alex.ivanov@gmail.com</h3>
-                    <small>14:47</small>
-                </div>
-                <p class="mb-0" v-if="message.length <= 50">{{ message }}</p>
-                <p class="mb-0" v-else>{{ message.slice(0, 50) + '...' }}</p>
-            </div>
-            <div class="messanger__item">
-                <div class="name d-flex align-items-center">
-                    <h3 class="mb-0">alex.ivanov@gmail.com</h3>
-                    <small>14:47</small>
-                </div>
-                <p class="mb-0" v-if="message.length <= 50">{{ message }}</p>
-                <p class="mb-0" v-else>{{ message.slice(0, 50) + '...' }}</p>
-            </div>
+
         </div>
 
         <div class="messanger__chatbox">
-            <h3>alex.ivanov@gmail.com</h3>
-            <div class="message__form" ref="messageContainer">
-                <!-- <div class=" message__from">
-                    <div>
-                        <div class="message">
-                            <div class="message__item from">
-                                <p class="mb-0">
-                                    Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-                                    Lorem
-                                    ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-                                    ipsum
-                                    Lorem ipsum Lorem ipsum Lorem ipsum
-                                </p>
-                            </div>
-                            <div class="time">
-                                <small>14:46</small>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-
+            <h3>{{ newName }}</h3>
+            <div class="message__form" ref="messageContainer" v-if="!isSeller">
                 <div v-for="message in messages" :key="message.time"
-                    :class="{ message__to: !message.isFrom, message__from: message.isFrom }">
+                    :class="{ message__to: !message.from_seller, message__from: message.from_seller }">
                     <div>
                         <div class="message">
-                            <div class="message__item" :class="{ to: !message.isFrom, from: message.isFrom }">
+                            <div class="message__item" :class="{ to: !message.from_seller, from: message.from_seller }">
                                 <p class="mb-0">{{ message.text }}</p>
                             </div>
-                            <div class="time" :class="{ 'text-right': !message.isFrom, 'text-left': message.isFrom }">
-                                <small>{{ message.time }}</small>
+                            <div class="time"
+                                :class="{ 'text-right': !message.from_seller, 'text-left': message.from_seller }">
+                                <small>{{ formatTime(message.time) }}</small>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="message__form" ref="messageContainer" v-if="isSeller">
+                <div v-for="message in messages" :key="message.time"
+                    :class="{ message__to: message.from_seller, message__from: !message.from_seller }">
+                    <div>
+                        <div class="message">
+                            <div class="message__item" :class="{ to: message.from_seller, from: !message.from_seller }">
+                                <p class="mb-0">{{ message.text }}</p>
+                            </div>
+                            <div class="time"
+                                :class="{ 'text-right': message.from_seller, 'text-left': !message.from_seller }">
+                                <small>{{ formatTime(message.time) }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="messanger__send d-flex">
                 <input type="text" class="w-100" v-model="textMessage" placeholder="Введите сообщение..."
-                    @keydown.enter.prevent="sendMessage">
-                <button @click="sendMessage"><img src="@/assets/img/send.svg" alt=""></button>
+                    @keydown.enter.prevent="sendMsg">
+                <button @click="sendMsg"><img src="@/assets/img/send.svg" alt=""></button>
             </div>
-            <div class="d-flex align-items-center mt-4">
-                <label class="toggle mb-0">
-                    <input type="checkbox" v-model="isTest" />
-                    <span class="slider"></span>
-                </label>
 
-                <span class="ml-3">Переключи для смены отправителя сообщений (Только для теста)</span>
-            </div>
         </div>
     </div>
 </template>
 <script>
+import global from '~/mixins/global';
+import axios from 'axios';
 export default {
+    mixins: [global],
+    props: {
+        chatId: Number,
+        name: String,
+    },
     data() {
         return {
             message: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Ipsum Ipsum Ipsum Ipsum',
             textMessage: '',
             textMessage2: '',
+            newName: this.name,
+            newId: this.chatId,
             messages: [
-                {
-                    text: 'Кто цыгане?',
-                    time: '0:30',
-                    isFrom: true,
-                },
-                {
-                    text: '3.14doorы',
-                    time: '0:30',
-                    isFrom: false,
-                }
+
             ],
             isTest: false,
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+
+            msg: [],
+            socket: null,
+            isSeller: false,
+            chats: [],
 
         }
     },
+    computed: {
+        lastMessage() {
+            // Возвращает последнее сообщение из массива messages, если он не пустой
+            return this.chat.messages.length > 0 ? this.chat.messages[this.chat.messages.length - 1] : null;
+        },
+    },
     methods: {
-        sendMessage() {
-            if (this.textMessage.trim() !== '') {
-                const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                const newMessage = {
-                    text: this.textMessage,
-                    time: currentTime,
-                    isFrom: this.isTest // Для определения отправителя
-                };
-                this.messages.push(newMessage);
-                this.textMessage = ''; // Сбросить инпут после отправки
-                this.$nextTick(() => {
-                    this.scrollToBottom();
-                });
-            }
+        getLastMessageTime(chat) {
+            // Возвращает отформатированное время последнего сообщения в чате
+            const lastMessage = chat.messages && chat.messages.length > 0
+                ? chat.messages[chat.messages.length - 1]
+                : null;
+
+            return lastMessage && lastMessage.date_time
+                ? this.time(lastMessage.date_time)
+                : '';
+        },
+        getLastMessageText(chat) {
+            // Возвращает текст последнего сообщения в чате
+            const lastMessage = chat.messages && chat.messages.length > 0
+                ? chat.messages[chat.messages.length - 1]
+                : null;
+
+            return lastMessage && lastMessage.text ? lastMessage.text : '';
+        },
+        formatTime(timeString) {
+            const timeArray = timeString.split(':');
+            const hours = timeArray[0];
+            const minutes = timeArray[1];
+            const formattedHours = hours.padStart(2, '0');
+            const formattedMinutes = minutes.padStart(2, '0');
+            return `${formattedHours}:${formattedMinutes}`;
+        },
+        time(dateTime) {
+            // Возвращает отформатированное время (часы:минуты) из переданного dateTime
+            const date = new Date(dateTime);
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+        },
+        getChats() {
+            const token = this.getAuthorizationCookie()
+            const path = `${this.pathUrl}/api/messanger/all-chats`
+            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+
+            axios
+                .get(path)
+                .then(response => {
+                    this.chats = response.data
+                })
+                .catch(error => {
+                    console.log(error)
+                })
         },
         scrollToBottom() {
             const container = this.$refs.messageContainer;
             container.scrollTop = container.scrollHeight;
+        },
+
+        sendMsg() {
+            if (this.textMessage.trim() === '') return;
+
+            const messageObject = {
+                text: this.textMessage,
+                from_seller: this.isSeller,
+            };
+
+            this.socket.send(JSON.stringify(messageObject));
+            this.textMessage = '';
+            this.$nextTick(() => {
+                this.scrollToBottom();
+            });
+
+        },
+        onSocketOpen(event) {
+            //  console.log('WebSocket connection opened:', event);
+            // Do something when the WebSocket connection is opened
+        },
+        onSocketMessage(event) {
+            const msg = JSON.parse(event.data);
+            if (msg.type === 'chat.message' && msg.messages) {
+                // Обновляем массив messages, добавляя новые сообщения
+                this.messages.push(...msg.messages);
+                this.getChats()
+            } else {
+                // Обновляем массив messages, заменяя его содержимое на новое
+                this.messages = msg;
+                this.getChats()
+            }
+
+            this.$nextTick(() => {
+                this.scrollToBottom();
+            });
+        },
+        onSocketClose(event) {
+            console.log('WebSocket connection closed:', event);
+            // Do something when the WebSocket connection is closed
+        },
+        onSocketError(event) {
+            // console.error('WebSocket error:', event);
+            // Handle WebSocket errors
+        },
+        newChat(id, name) {
+            this.newId = id
+            this.newName = name
+            this.socket.close();
+
+            this.startChat()
+        },
+        startChat() {
+            this.socket = new WebSocket(`ws://8.tcp.ngrok.io:12091/api/messanger/open-chat/${this.newId}`);
+            this.socket.addEventListener('open', this.onSocketOpen);
+            this.socket.addEventListener('message', this.onSocketMessage);
+            this.socket.addEventListener('close', this.onSocketClose);
+            this.socket.addEventListener('error', this.onSocketError);
+
         }
-    }
+    },
+
+    mounted() {
+        this.getChats()
+    },
+    created() {
+        this.startChat()
+
+
+        const accType = localStorage.getItem('accountType')
+        // console.log(accType)
+        if (accType == 'buyer-account') {
+            this.isSeller = false
+        }
+        else if (accType == 'seller-account') {
+            this.isSeller = true
+        }
+        else {
+            console.log('not authorized')
+        }
+
+    },
+    beforeDestroy() {
+        if (this.socket) {
+            this.socket.disconnect();
+        }
+    },
+
 }
+</script>
+<script setup>
+
+useSeoMeta({
+    title: 'Мессенджер | Themes',
+    ogTitle: 'Мессенджер  | Themes',
+    description: 'Мессенджер  | Themes',
+    ogDescription: 'Мессенджер  | Themes',
+})
 </script>
 <style scoped>
 .toggle {

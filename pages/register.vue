@@ -6,9 +6,10 @@
                     <div class="text-center">
                         <h1>Регистрация</h1>
                     </div>
-                    <input type="email" name="email" id="email" placeholder="E-mail">
-                    <input type="password" name="password" id="password" placeholder="Пароль">
-                    <input type="password" name="repeat-password" id="repeat-password" placeholder="Повторите пароль">
+                    <input type="email" name="email" id="email" placeholder="E-mail" v-model="email">
+                    <input type="password" name="password" id="password" placeholder="Пароль" v-model="password">
+                    <input type="password" name="repeat-password" id="repeat-password" placeholder="Повторите пароль"
+                        v-model="repeat__password">
                     <div class="switch-button">
                         <span class="active" :style="{ left: activeSwitchPosition }"></span>
                         <button type="button" class="switch-button-case left"
@@ -25,9 +26,10 @@
                                 конфиденциальности</NuxtLink>
                         </p>
                     </label>
-                    <button class="w-100 register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+                    <button class="w-100 register" @click="register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
                     <div class="text-center">
                         <span>Уже есть аккаунт? <NuxtLink to='/login'>Войти</NuxtLink></span>
+
                     </div>
                 </div>
             </div>
@@ -41,10 +43,17 @@
     </div>
 </template>
 <script>
+import global from '~/mixins/global';
+import axios from 'axios';
 export default {
+    mixins: [global],
     data() {
         return {
             activeSwitchPosition: '50%',
+            email: '',
+            password: '',
+            repeat__password: '',
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
         }
     },
     methods: {
@@ -53,6 +62,36 @@ export default {
         },
         switchRight() {
             this.activeSwitchPosition = '50%';
+        },
+        register() {
+            const buyer = `${this.pathUrl}/api/main/registration/buyer`
+            const seller = `${this.pathUrl}/api/main/registration/seller`
+            if (this.activeSwitchPosition == '50%') {
+                axios
+                    .post(seller, { email: this.email, password: this.password, username: this.email })
+                    .then((res) => {
+                        document.cookie = `Authorization=${res.data.token}; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/`;
+                        console.log(res)
+                        localStorage.setItem('accountType', res.data.redirect_url)
+                        window.location.href = res.data.redirect_url
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+            else {
+                axios
+                    .post(buyer, { email: this.email, password: this.password, username: this.email })
+                    .then((res) => {
+                        document.cookie = `Authorization=${res.data.token}; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/`;
+                        console.log(res)
+                        localStorage.setItem('accountType', res.data.redirect_url)
+                        window.location.href = res.data.redirect_url
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         },
     },
 }

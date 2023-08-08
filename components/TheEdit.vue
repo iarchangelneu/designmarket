@@ -5,13 +5,13 @@
 
                 <div>
                     <label for="name">Название товара</label>
-                    <input type="text" id="name" name="name" placeholder="Введите название товара" required>
+                    <input type="text" id="name" name="name" placeholder="Введите название товара" required v-model="name">
 
                     <div class="d-flex align-items-end category__select">
                         <div>
                             <label for="category">Выберите категорию</label>
-                            <select name="category" id="category" v-model="selectedCategory" :disabled="hasSelectedCategory"
-                                required>
+                            <select name="add_category" id="category" v-model="selectedCategory"
+                                :disabled="hasSelectedCategory" required>
                                 <option value="" disabled>Выбор категории</option>
                                 <option v-for="(category, index) in categories" :value="index" :key="index">{{ category
                                 }}
@@ -44,10 +44,10 @@
                     </div>
 
                     <div class="mt-4">
-                        <label for="file">Название товара</label>
+                        <label for="file">Загрузка изображения</label>
                         <label class="custom-file-upload" :class="{ 'dragging': isDraggingFile }"
                             @dragover.prevent="handleDragOver" @dragleave="handleDragLeave" @drop="handleDrop">
-                            <input type="file" id="file" name="file" @change="handleFileUpload">
+                            <input type="file" id="file" name="main_image" @change="handleFileUpload">
                             <div class="d-flex align-items-center justify-content-between">
                                 <small>{{ selectedFileName || 'Перетащите файл сюда или откройте вручную' }}</small>
                                 <span>Открыть</span>
@@ -58,14 +58,15 @@
 
                 <div>
                     <div>
-                        <label for="desc">Загрузка файла дизайна</label>
-                        <textarea name="desc" id="desc" cols="30" placeholder="Введите описание товара"></textarea>
+                        <label for="desc">Описание дизайна</label>
+                        <textarea name="description_1" id="desc" cols="30" placeholder="Введите описание товара"
+                            v-model="description"></textarea>
                     </div>
                     <div class="mt-3">
                         <label for="design">Загрузка файла дизайна</label>
                         <label class="custom-file-upload" :class="{ 'dragging': isDraggingFile2 }"
                             @dragover.prevent="handleDragOver2" @dragleave="handleDragLeave2" @drop="handleDrop2">
-                            <input type="file" id="design" name="design" @change="handleFileUpload2">
+                            <input type="file" id="design" name="main_file" @change="handleFileUpload2">
                             <div class="d-flex align-items-center justify-content-between">
                                 <small>{{ selectedDesignName || 'Перетащите файл сюда или откройте вручную' }}</small>
                                 <span>Открыть</span>
@@ -75,17 +76,20 @@
                 </div>
             </div>
             <div class="text-center">
-                <button>СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
+                <button type="button" id="savebtn" @click="submitForm" ref="editProduct">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
             </div>
         </form>
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
+    props: {
+        productId: Number,
+    },
     data() {
         return {
-            discount: null,
-            price: null,
             categories: [
                 "Развлечения",
                 "Еда и рестораны",
@@ -107,8 +111,17 @@ export default {
             isDraggingFile: false,
             selectedDesignName: '',
             isDraggingFile2: false,
+            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            product: [],
+            name: '',
+            description: '',
+            discount: null,
+            price: null,
+            selectedDesign: [],
+            selectedFile: [],
         }
     },
+
 
     computed: {
         hasSelectedCategory() {
@@ -116,6 +129,46 @@ export default {
         },
     },
     methods: {
+        async submitForm() {
+            const path = `${this.pathUrl}/api/seller/seller-lk/edit-product/${this.productId}`
+            const formData = new FormData();
+            formData.append('name', this.name);
+            formData.append('category', this.selectedCategory + 1);
+            formData.append('price', this.price);
+            formData.append('discount', this.discount);
+            formData.append('main_image', this.selectedFile);
+            formData.append('description_1', this.description);
+            formData.append('main_file', this.selectedDesign);
+
+
+
+            try {
+                const response = await axios.put(path, formData);
+                const save = document.querySelector('#savebtn')
+                console.log('Форма успешно отправлена', response);
+                if (response.status == 200) {
+                    save.innerHTML = 'Товар успешно сохранен'
+                    window.location.href = '/seller-account'
+                }
+            } catch (error) {
+                console.error('Ошибка при отправке формы', error);
+            }
+        },
+        getProduct() {
+            const path = `${this.pathUrl}/api/seller/seller-lk/edit-product/${this.productId}`
+            axios
+                .get(path)
+                .then(response => {
+                    this.description = response.data.description_1
+                    this.name = response.data.name
+                    this.discount = response.data.discount
+                    this.price = response.data.price
+                    this.selectedCategory = response.data.category - 1
+                })
+                .catch(error => {
+                    console.error(error)
+                })
+        },
         removeCategory() {
             this.selectedCategories.splice(0, 1);
             this.selectedCategory = null;
@@ -140,7 +193,7 @@ export default {
         },
         handleFile(file) {
             this.selectedFileName = file ? file.name : '';
-            // хуесос
+            this.selectedFile = file;
         },
         handleFileUpload2(event) {
             const file = event.target.files[0];
@@ -162,8 +215,12 @@ export default {
         },
         handleFile2(file) {
             this.selectedDesignName = file ? file.name : '';
-            // хуесос
-        }
+            this.selectedDesign = file;
+        },
+
+    },
+    mounted() {
+        this.getProduct()
     },
     watch: {
         selectedCategory(newVal) {
@@ -173,6 +230,15 @@ export default {
         },
     },
 }
+</script>
+<script setup>
+
+useSeoMeta({
+    title: 'Редактирование товара | Themes',
+    ogTitle: 'Редактирование товара | Themes',
+    description: 'Редактирование товара | Themes',
+    ogDescription: 'Редактирование товара | Themes',
+})
 </script>
 <style scoped>
 .creat__body button {
@@ -188,6 +254,12 @@ export default {
     font-family: var(--int);
     color: #000;
     margin-top: 54px;
+    transition: all .3s ease;
+}
+
+.creat__body button:hover {
+    color: #fff;
+    background: #000;
 }
 
 .creat__body textarea {

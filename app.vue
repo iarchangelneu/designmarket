@@ -1,5 +1,4 @@
 <template>
-  <TheCart></TheCart>
   <TheHeader></TheHeader>
 
   <div>
