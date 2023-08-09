@@ -206,7 +206,7 @@ export default {
             this.startChat()
         },
         startChat() {
-            this.socket = new WebSocket(`ws://themes.kz/api/messanger/open-chat/${this.newId}`);
+            this.socket = new WebSocket(`wss://themes.kz/api/messanger/open-chat/${this.newId}`);
             this.socket.addEventListener('open', this.onSocketOpen);
             this.socket.addEventListener('message', this.onSocketMessage);
             this.socket.addEventListener('close', this.onSocketClose);
