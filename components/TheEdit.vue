@@ -111,7 +111,7 @@ export default {
             isDraggingFile: false,
             selectedDesignName: '',
             isDraggingFile2: false,
-            pathUrl: 'http://127.0.0.1',
+            pathUrl: 'http://127.0.0.1:8000',
             product: [],
             name: '',
             description: '',

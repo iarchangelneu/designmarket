@@ -31,7 +31,7 @@ export default {
         return {
             email: '',
             password: '',
-            pathUrl: 'http://127.0.0.1',
+            pathUrl: 'http://127.0.0.1:8000',
         }
     },
     methods: {

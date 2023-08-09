@@ -3,7 +3,7 @@ export default {
   data() {
     return {
       isAuth: false,
-      pathUrl: "http://127.0.0.1",
+      pathUrl: "http://127.0.0.1:8000",
       accountUrl: "",
     };
   },

@@ -434,7 +434,7 @@ export default {
             },
             currentSlideIndex: 0,
             totalSlides: 0,
-            pathUrl: 'http://127.0.0.1',
+            pathUrl: 'http://127.0.0.1:8000',
             populars: [],
         };
     },

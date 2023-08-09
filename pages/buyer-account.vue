@@ -127,7 +127,7 @@ export default {
             password: '',
             chats: [],
             seller: [],
-            pathUrl: 'http://127.0.0.1',
+            pathUrl: 'http://127.0.0.1:8000',
             buys: [],
             sendId: null,
             chatId: null,

@@ -114,7 +114,7 @@ export default {
             selectedDesignName: '',
             selectedDesign: [],
             isDraggingFile2: false,
-            pathUrl: 'http://127.0.0.1',
+            pathUrl: 'http://127.0.0.1:8000',
         }
     },
 
