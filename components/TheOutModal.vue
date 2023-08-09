@@ -19,11 +19,14 @@
                     </label>
                     <p>2. Введите сумму, которую Вы хотите вывести с личного счета, и нажмите на кнопку “Вывести”. Вы будете
                         переадресованы на сайт платежной системы, где сможете завершить операцию.</p>
-
-                    <form class="d-flex sendMoney">
-                        <input type="text" v-model="count" name="count" id="count" placeholder="100 ₸">
-                        <input type="number" name="card" id="card" v-model="card_number">
-                        <button type="button" @click="outMoney()">ВЫВЕСТИ</button>
+                    <form class="sendMoney">
+                        <input type="text" class="mb-3 w-100" name="card" id="card" v-model="cardNumber"
+                            :maxlength="cardNumberMaxLength" placeholder="Введите номер карты" @input="formatCardNumber"
+                            autocomplete="cc-number">
+                        <div class="d-flex sendMoney">
+                            <input type="text" v-model="count" name="count" id="count" placeholder="100 ₸">
+                            <button type="button" @click="outMoney()" ref="outBtn">ВЫВЕСТИ</button>
+                        </div>
                     </form>
 
                     <div class="modalfooter d-flex">
@@ -47,7 +50,8 @@ export default {
         return {
             count: null,
             pathUrl: 'https://themes.kz',
-            card_number: null,
+            cardNumber: '',
+            cardNumberMaxLength: 19,
         }
     },
     methods: {
@@ -55,24 +59,44 @@ export default {
             const token = this.getAuthorizationCookie()
             const path = `${this.pathUrl}/api/money/pay-return`
             axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            this.$refs.outBtn.innerHTML = 'ОЖИДАЙТЕ'
 
             axios
                 .post(path, {
                     amount: this.count,
-                    card_number: this.card_number
+                    card_number: this.cardNumber.replace(/\s/g, '')
                 })
                 .then(response => {
                     console.log(response)
+                    if (response.status == 201) {
+                        this.$refs.outBtn.innerHTML = 'УСПЕШНО'
+                    }
 
                 })
                 .catch(error => {
                     console.error(error)
+                    this.$refs.outBtn.innerHTML = 'ВЫВЕСТИ'
                 })
         },
+        formatCardNumber() {
+            // Удаляем все символы, кроме цифр
+            this.cardNumber = this.cardNumber.replace(/\D/g, '');
+
+            // Добавляем разделитель каждые 4 символа
+            this.cardNumber = this.cardNumber.replace(/(.{4})/g, '$1 ');
+
+            // Обрезаем карточный номер до максимальной длины
+            this.cardNumber = this.cardNumber.slice(0, this.cardNumberMaxLength);
+        }
     }
 }
 </script>
 <style scoped>
+#card {
+    max-width: 100% !important;
+    text-align: left;
+}
+
 .modalfooter {
     gap: 10px;
     flex-wrap: wrap;

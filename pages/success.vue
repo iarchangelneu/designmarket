@@ -1,8 +1,7 @@
 <template>
     <div class="success">
         <div class="text-center">
-            <h1>ПРИ ПРОВЕДЕНИИ ТРАНЗАКЦИИ ПРОИЗОШЛА ОШИБКА
-                ПОВТОРИТЕ ЗАПРОС ПОЗДНЕЕ</h1>
+            <h1>ТРАНЗАКЦИЯ ПРОШЛА УСПЕШНО!</h1>
 
             <NuxtLink to="/">НА ГЛАВНУЮ</NuxtLink>
         </div>
@@ -11,10 +10,10 @@
 <script setup>
 
 useSeoMeta({
-    title: 'Ошибка | Themes',
-    ogTitle: 'Ошибка | Themes',
-    description: 'Ошибка | Themes',
-    ogDescription: 'Ошибка | Themes',
+    title: 'Успех | Themes',
+    ogTitle: 'Успех | Themes',
+    description: 'Успех | Themes',
+    ogDescription: 'Успех | Themes',
 })
 </script>
 <style scoped>

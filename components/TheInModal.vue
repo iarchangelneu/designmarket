@@ -22,7 +22,7 @@
 
                     <form class="d-flex sendMoney">
                         <input type="text" v-model="count" name="count" id="count" placeholder="100 ₸">
-                        <button type="button" @click="inMoney()">ПОПОЛНИТЬ</button>
+                        <button type="button" @click="inMoney()" ref="inBtn">ПОПОЛНИТЬ</button>
                     </form>
 
                     <div class="modalfooter d-flex">
@@ -53,6 +53,7 @@ export default {
             const token = this.getAuthorizationCookie()
             const path = `${this.pathUrl}/api/money/new-pay`
             axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            this.$refs.inBtn.innerHTML = 'ОЖИДАЙТЕ'
 
             axios
                 .post(path, {
@@ -61,9 +62,13 @@ export default {
                 .then(response => {
                     console.log(response)
                     window.location.href = response.data.url
+                    if (response.status = 201) {
+                        this.$refs.inBtn.innerHTML = 'ПОПОЛНИТЬ'
+                    }
                 })
                 .catch(error => {
                     console.error(error)
+                    this.$refs.inBtn.innerHTML = 'ПОПОЛНИТЬ'
                 })
         },
     }
