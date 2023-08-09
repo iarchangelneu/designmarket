@@ -434,7 +434,7 @@ export default {
             },
             currentSlideIndex: 0,
             totalSlides: 0,
-            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            pathUrl: 'http://127.0.0.1',
             populars: [],
         };
     },
@@ -1395,4 +1395,5 @@ section {
         width: 100%;
         max-width: 100%;
     }
-}</style>
+}
+</style>

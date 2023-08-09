@@ -101,7 +101,7 @@ export default {
             products: [],
             minPrice: null,
             maxPrice: null,
-            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            pathUrl: 'http://127.0.0.1',
             categories: {
                 1: "Развлечения",
                 2: "Еда и рестораны",

@@ -45,7 +45,7 @@ export default {
     data() {
         return {
             count: null,
-            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            pathUrl: 'http://127.0.0.1',
         }
     },
     methods: {

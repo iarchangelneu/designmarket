@@ -50,7 +50,7 @@
                                     <div v-else>
                                         <NuxtLink style="cursor: pointer;" alt="" data-toggle="modal"
                                             :data-target="accountType === 'seller' ? '#outModal' : '#inModal'">{{
-                                                userBalance }} ₸</NuxtLink>
+                                                                                        userBalance }} ₸</NuxtLink>
                                         <NuxtLink :to="this.accountUrl">Личный кабинет</NuxtLink>
                                     </div>
                                     <NuxtLink to="/catalog">Каталог</NuxtLink>
@@ -88,7 +88,7 @@
                         <img src="@/assets/img/delete.svg" alt="" style="cursor: pointer;" @click="deleteFromCart(item.id)">
                     </div>
                     <p class="mb-0">{{ (Math.floor(item.products.price - ((item.products.price * item.products.discount) /
-                        100))).toLocaleString() }} ₸</p>
+                                            100))).toLocaleString() }} ₸</p>
                 </div>
             </div>
 
@@ -109,7 +109,7 @@ export default {
             cartOpen: false,
             hideFooterOnPages: ['login', 'register'],
             closed: false,
-            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            pathUrl: 'http://127.0.0.1',
             cart: [],
             userBalance: null,
             accountType: '',

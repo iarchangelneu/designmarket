@@ -87,7 +87,7 @@ export default {
 
             ],
             isTest: false,
-            pathUrl: 'https://b776-5-188-154-93.ngrok-free.app',
+            pathUrl: 'http://127.0.0.1',
 
             msg: [],
             socket: null,
@@ -206,7 +206,7 @@ export default {
             this.startChat()
         },
         startChat() {
-            this.socket = new WebSocket(`ws://8.tcp.ngrok.io:12091/api/messanger/open-chat/${this.newId}`);
+            this.socket = new WebSocket(`ws://127.0.0.1:8001/api/messanger/open-chat/${this.newId}`);
             this.socket.addEventListener('open', this.onSocketOpen);
             this.socket.addEventListener('message', this.onSocketMessage);
             this.socket.addEventListener('close', this.onSocketClose);
