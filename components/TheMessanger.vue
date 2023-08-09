@@ -171,7 +171,7 @@ export default {
 
         },
         onSocketOpen(event) {
-            //  console.log('WebSocket connection opened:', event);
+            console.log('WebSocket connection opened:', event);
             // Do something when the WebSocket connection is opened
         },
         onSocketMessage(event) {
@@ -195,7 +195,7 @@ export default {
             // Do something when the WebSocket connection is closed
         },
         onSocketError(event) {
-            // console.error('WebSocket error:', event);
+            console.error('WebSocket error:', event);
             // Handle WebSocket errors
         },
         newChat(id, name) {
@@ -206,7 +206,7 @@ export default {
             this.startChat()
         },
         startChat() {
-            this.socket = new WebSocket(`wss://themes.kz/api/messanger/open-chat/${this.newId}`);
+            this.socket = new WebSocket(`ws://127.0.0.1:8001/api/messanger/open-chat/${this.newId}`);
             this.socket.addEventListener('open', this.onSocketOpen);
             this.socket.addEventListener('message', this.onSocketMessage);
             this.socket.addEventListener('close', this.onSocketClose);
