@@ -3,7 +3,6 @@ export default {
   data() {
     return {
       isAuth: false,
-      pathUrl: "https://themes.kz",
       accountUrl: "",
     };
   },
