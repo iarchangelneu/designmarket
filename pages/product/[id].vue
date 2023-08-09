@@ -51,7 +51,7 @@ export default {
             productId: this.$route.params.id,
             product: [],
             seller: [],
-            pathUrl: 'http://127.0.0.1:8000',
+            pathUrl: 'https://themes.kz',
             category: '',
             apiMessage: '',
         }
@@ -104,7 +104,7 @@ export default {
 <script setup>
 const route = useRoute();
 const itemId = route.params.id
-const productDetails = await fetch(`http://127.0.0.1:8000/api/products/detail-product/${itemId}`).then(res => res.json()).then(data => data);
+const productDetails = await fetch(`https://themes.kz/api/products/detail-product/${itemId}`).then(res => res.json()).then(data => data);
 const title = `${productDetails.name}`
 useSeoMeta({
     title: () => title + ' | Design Market',

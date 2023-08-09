@@ -185,7 +185,7 @@ export default {
             description: '',
             account: [],
             password: '',
-            pathUrl: 'http://127.0.0.1:8000',
+            pathUrl: 'https://themes.kz',
             email: '',
             name: '',
             sales: [],

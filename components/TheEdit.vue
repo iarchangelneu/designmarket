@@ -14,7 +14,7 @@
                                 :disabled="hasSelectedCategory" required>
                                 <option value="" disabled>Выбор категории</option>
                                 <option v-for="(category, index) in categories" :value="index" :key="index">{{ category
-                                                                    }}
+                                }}
                                 </option>
                             </select>
                         </div>
@@ -111,7 +111,7 @@ export default {
             isDraggingFile: false,
             selectedDesignName: '',
             isDraggingFile2: false,
-            pathUrl: 'http://127.0.0.1:8000',
+            pathUrl: 'https://themes.kz',
             product: [],
             name: '',
             description: '',

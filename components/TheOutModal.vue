@@ -46,7 +46,7 @@ export default {
     data() {
         return {
             count: null,
-            pathUrl: 'http://127.0.0.1:8000',
+            pathUrl: 'https://themes.kz',
             card_number: null,
         }
     },

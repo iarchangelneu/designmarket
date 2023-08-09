@@ -87,7 +87,7 @@ export default {
 
             ],
             isTest: false,
-            pathUrl: 'http://127.0.0.1:8000',
+            pathUrl: 'https://themes.kz',
 
             msg: [],
             socket: null,
@@ -206,7 +206,7 @@ export default {
             this.startChat()
         },
         startChat() {
-            this.socket = new WebSocket(`ws://127.0.0.1:8001/api/messanger/open-chat/${this.newId}`);
+            this.socket = new WebSocket(`ws://themes.kz:8001/api/messanger/open-chat/${this.newId}`);
             this.socket.addEventListener('open', this.onSocketOpen);
             this.socket.addEventListener('message', this.onSocketMessage);
             this.socket.addEventListener('close', this.onSocketClose);

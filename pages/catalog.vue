@@ -101,7 +101,7 @@ export default {
             products: [],
             minPrice: null,
             maxPrice: null,
-            pathUrl: 'http://127.0.0.1:8000',
+            pathUrl: 'https://themes.kz',
             categories: {
                 1: "Развлечения",
                 2: "Еда и рестораны",
