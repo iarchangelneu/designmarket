@@ -659,7 +659,12 @@ hr {
 
     .catalog__item img {
         width: 100%;
-        max-height: 305px;
+        max-height: 165px;
+        border-radius: 0 0 33px 33px;
+    }
+
+    .catalog__item {
+        border-radius: 33px;
     }
 }
 

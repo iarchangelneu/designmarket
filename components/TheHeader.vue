@@ -30,7 +30,9 @@
         </div>
         <div class="mob">
             <div class="d-flex justify-content-between">
-                <img src="@/assets/img/headermob.svg" alt="">
+                <NuxtLink to="/">
+                    <img src="@/assets/img/headermob.svg" alt="">
+                </NuxtLink>
                 <div class="d-flex burg">
                     <div class="cartrap mt-3" v-if="accountType == 'buyer'">
                         <img src="@/assets/img/cart.svg" style="cursor: pointer;" alt="" @click="openHeader">
