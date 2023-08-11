@@ -99,7 +99,7 @@
             <div class="user__info d-flex justify-content-center">
                 <div>
                     <label for="email">E-mail</label>
-                    <input type="email" name="email" id="email" placeholder="Ваш e-mail" v-model="account.email">
+                    <input type="email" name="email" id="email" placeholder="Ваш e-mail" v-model="email">
                 </div>
                 <div>
                     <label for="password">Пароль</label>
@@ -125,6 +125,7 @@ export default {
             test: true,
             account: [],
             password: '',
+            email: '',
             chats: [],
             seller: [],
             pathUrl: 'https://themes.kz',
@@ -151,6 +152,7 @@ export default {
                     this.account = response.data
                     this.myId = response.data.id
                     this.transactions = response.data.transactions
+                    this.email = response.data.user.email
 
                 })
                 .catch(error => console.log(error));

@@ -44,8 +44,10 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
+import global from '~/mixins/global';
+import axios from 'axios';
 export default {
+    mixins: [global],
     data() {
         return {
             productId: this.$route.params.id,
@@ -53,7 +55,6 @@ export default {
             seller: [],
             pathUrl: 'https://themes.kz',
             category: '',
-            apiMessage: '',
         }
     },
     methods: {
@@ -83,6 +84,7 @@ export default {
                         this.$refs.apiMessage.classList.add('green')
                         this.$refs.cartBtn.disabled = true
                         this.$refs.cartBtn.classList.add('disabled')
+                        this.getCart()
                     }
                     else {
                         this.apiMessage = 'Произошла ошибка, попробуйте еще раз'

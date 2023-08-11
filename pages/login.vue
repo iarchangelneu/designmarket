@@ -48,7 +48,12 @@ export default {
 
                         document.cookie = `Authorization=${res.data.token}; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/`;
                         localStorage.setItem('accountType', res.data.redirect_url)
-                        window.location.href = res.data.redirect_url
+                        if (res.data.redirect_url == 'buyer-account') {
+                            window.location.href = '/'
+                        }
+                        if (res.data.redirect_url == 'seller-account') {
+                            window.location.href = '/seller-account'
+                        }
                     }
                     else {
 

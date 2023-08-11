@@ -71,6 +71,9 @@ export default {
                     if (response.status == 201) {
                         this.$refs.outBtn.innerHTML = 'УСПЕШНО'
                     }
+                    if (response.status == 228) {
+                        this.$refs.outBtn.innerHTML = response.data.error_msg
+                    }
 
                 })
                 .catch(error => {

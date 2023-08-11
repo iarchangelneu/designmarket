@@ -83,17 +83,13 @@ export default {
             textMessage2: '',
             newName: this.name,
             newId: this.chatId,
-            messages: [
-
-            ],
+            messages: [],
             isTest: false,
             pathUrl: 'https://themes.kz',
-
             msg: [],
             socket: null,
             isSeller: false,
             chats: [],
-
         }
     },
     computed: {
@@ -172,18 +168,20 @@ export default {
         },
         onSocketOpen(event) {
             console.log('WebSocket connection opened:', event);
-            // Do something when the WebSocket connection is opened
+
         },
         onSocketMessage(event) {
+            console.log(event.data);
             const msg = JSON.parse(event.data);
             if (msg.type === 'chat.message' && msg.messages) {
-                // Обновляем массив messages, добавляя новые сообщения
-                this.messages.push(...msg.messages);
-                this.getChats()
+                // Добавляем только последнее сообщение
+                const lastMessage = msg.messages[msg.messages.length - 1];
+                this.messages.push(lastMessage);
+                this.getChats();
             } else {
                 // Обновляем массив messages, заменяя его содержимое на новое
                 this.messages = msg;
-                this.getChats()
+                this.getChats();
             }
 
             this.$nextTick(() => {
@@ -192,11 +190,9 @@ export default {
         },
         onSocketClose(event) {
             console.log('WebSocket connection closed:', event);
-            // Do something when the WebSocket connection is closed
         },
         onSocketError(event) {
             console.error('WebSocket error:', event);
-            // Handle WebSocket errors
         },
         newChat(id, name) {
             this.newId = id

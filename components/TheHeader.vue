@@ -11,8 +11,10 @@
             </NuxtLink>
 
             <div class="first">
-                <img v-if="accountType == 'buyer'" src="@/assets/img/cart.svg" style="cursor: pointer;" alt=""
-                    @click="openHeader">
+                <div class="cartrap" v-if="accountType == 'buyer'">
+                    <img src="@/assets/img/cart.svg" style="cursor: pointer;" alt="" @click="openHeader">
+                    <span>{{ cartLength }}</span>
+                </div>
                 <div class="first" v-if="!isAuth">
                     <NuxtLink to="/login">Войти</NuxtLink>
                     <NuxtLink to="/register">регистрация</NuxtLink>
@@ -30,8 +32,10 @@
             <div class="d-flex justify-content-between">
                 <img src="@/assets/img/headermob.svg" alt="">
                 <div class="d-flex burg">
-                    <img v-if="accountType == 'buyer'" src="@/assets/img/cart.svg" style="cursor: pointer;" alt=""
-                        @click="openHeader">
+                    <div class="cartrap mt-3" v-if="accountType == 'buyer'">
+                        <img src="@/assets/img/cart.svg" style="cursor: pointer;" alt="" @click="openHeader">
+                        <span>{{ cartLength }}</span>
+                    </div>
 
                     <div>
                         <input id="menu__toggle" type="checkbox" />
@@ -95,7 +99,7 @@
         </div>
 
         <div class="cart__footer text-center">
-            <button @click="buyProduct()">перейти к оформлению</button>
+            <button @click="buyProduct()" ref='cartBtn'>перейти к оформлению</button>
         </div>
     </div>
 </template>
@@ -110,9 +114,9 @@ export default {
             hideFooterOnPages: ['login', 'register'],
             closed: false,
             pathUrl: 'https://themes.kz',
-            cart: [],
             userBalance: null,
             accountType: '',
+            cartLength: localStorage.getItem('cartLength')
 
         }
     },
@@ -138,20 +142,6 @@ export default {
             let sc = $(".cart")[0];
             sc.style.right = '-2000px';
         },
-        getCart() {
-            const token = this.getAuthorizationCookie()
-            const path = `${this.pathUrl}/api/buyer/all-product-basket`;
-            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
-
-            axios
-                .get(path)
-                .then(response => {
-                    this.cart = response.data
-                })
-                .catch(error => {
-                    console.error(error)
-                })
-        },
         deleteFromCart(id) {
             const token = this.getAuthorizationCookie()
             const path = `${this.pathUrl}/api/buyer/delete-product-basket/${id}`
@@ -167,19 +157,29 @@ export default {
                 })
         },
         buyProduct() {
-            const token = this.getAuthorizationCookie()
-            const path = `${this.pathUrl}/api/buyer/placed-basket`
-            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
-            axios
-                .get(path)
-                .then(response => {
-                    console.log(response)
-                    this.getCart()
-                    window.location.href = '/buyer-account'
-                })
-                .catch(error => {
-                    console.error(error)
-                })
+            // const token = this.getAuthorizationCookie()
+            // const path = `${this.pathUrl}/api/buyer/placed-basket`
+            // axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            // this.$refs.cartBtn.innerHTML = 'Оформляем'
+            // axios
+            //     .get(path)
+            //     .then(response => {
+            //         console.log(response)
+            //         this.getCart()
+            //         if (response.status == 204) {
+            //             this.$refs.cartBtn.innerHTML = 'Недостаточно средств'
+            //         }
+            //         if (response.status == 201) {
+            //             this.getBuyer()
+            //             this.$refs.cartBtn.innerHTML = 'Переходим к оплате'
+            //             // window.location.href = '/buyer-account'
+            //         }
+            //     })
+            //     .catch(error => {
+            //         console.error(error)
+            //     })
+
+            window.location.href = '/complete-buy'
         },
         getSeller() {
             const token = this.getAuthorizationCookie()
@@ -198,8 +198,10 @@ export default {
         const accType = localStorage.getItem('accountType')
         if (accType == 'buyer-account') {
             this.getBuyer()
-            this.getCart()
             this.accountType = 'buyer'
+            setInterval(() => {
+                this.cartLength = localStorage.getItem('cartLength')
+            }, 1);
         }
         else if (accType == 'seller-account') {
             this.getSeller()
@@ -213,6 +215,24 @@ export default {
 }
 </script>
 <style scoped>
+.cartrap {
+    position: relative;
+}
+
+.cartrap span {
+    background: #000;
+    color: #fff;
+    font-family: var(--int);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 1px 5px;
+    border-radius: 100px;
+    position: absolute;
+    right: -15%;
+}
+
 .cart__footer button {
     border-radius: 50px;
     border: 3px solid #000;

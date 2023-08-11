@@ -87,9 +87,9 @@
                                 <div class="hvrbtn">
                                     <button class="lala">ПОДРОБНЕЕ</button>
                                 </div>
-                                <div class="sale2">
-                                    <span>30%</span>
-                                </div>
+                            </div>
+                            <div class="sale2">
+                                <span>30%</span>
                             </div>
                         </div>
                         <div class="smallimgs">
@@ -99,9 +99,9 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -110,9 +110,10 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -121,9 +122,10 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -132,9 +134,10 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
 
@@ -149,9 +152,9 @@
                                 <div class="hvrbtn">
                                     <button class="lala">ПОДРОБНЕЕ</button>
                                 </div>
-                                <div class="sale2">
-                                    <span>30%</span>
-                                </div>
+                            </div>
+                            <div class="sale2">
+                                <span>30%</span>
                             </div>
                         </div>
                         <div class="smallimgs">
@@ -161,9 +164,9 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -172,9 +175,10 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -183,9 +187,10 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -194,15 +199,17 @@
                                     <div class="hvrbtn">
                                         <button>ПОДРОБНЕЕ</button>
                                     </div>
-                                    <div class="sale">
-                                        <span>30%</span>
-                                    </div>
+
+                                </div>
+                                <div class="sale">
+                                    <span>30%</span>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </swiper-slide>
+
 
 
             </swiper>
@@ -214,34 +221,34 @@
 
             <div class="category d-flex">
                 <div class="cats">
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=4" class="cat d-flex align-items-center">
 
                         <img class="img-fluid" src="@/assets/img/cat1.svg" alt="">
                         <span>ОДЕЖДА И МОДА</span>
                     </NuxtLink>
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=8" class="cat d-flex align-items-center">
                         <img class="img-fluid" src="@/assets/img/cat2.svg" alt="">
                         <span>ПРЕДПРИЯТИЯ</span>
                     </NuxtLink>
                 </div>
-                <NuxtLink to="/catalog" class="bigcat">
+                <NuxtLink to="/catalog?category=2" class="bigcat">
                     <div class="text-center">
                         <img class="img-fluid" src="@/assets/img/cat3.svg" alt="">
                         <span class="d-block">ЕДА И РЕСТОРАНЫ</span>
                     </div>
                 </NuxtLink>
                 <div class="cats">
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=3" class="cat d-flex align-items-center">
 
                         <img class="img-fluid" src="@/assets/img/cat4.svg" alt="">
                         <span>ОБРАЗОВАНИЕ</span>
                     </NuxtLink>
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=6" class="cat d-flex align-items-center">
                         <img class="img-fluid" src="@/assets/img/cat5.svg" alt="">
                         <span>ПУТЕШЕСТВИЯ</span>
                     </NuxtLink>
                 </div>
-                <NuxtLink to="/catalog" class="bigcat mr-0">
+                <NuxtLink to="/catalog?category=1" class="bigcat mr-0">
                     <div class="text-center">
                         <img class="img-fluid" src="@/assets/img/cat6.svg" alt="">
                         <span class="d-block">РАЗВЛЕЧЕНИЯ</span>
@@ -250,36 +257,36 @@
             </div>
 
             <div class="category d-flex" style="margin-top: 17px;">
-                <NuxtLink to="/catalog" class="bigcat ml-0">
+                <NuxtLink to="/catalog?category=12" class="bigcat ml-0">
                     <div class="text-center">
                         <img class="img-fluid" src="@/assets/img/cat7.svg" alt="">
                         <span class="d-block">ТЕХНИКА</span>
                     </div>
                 </NuxtLink>
                 <div class="cats">
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=5" class="cat d-flex align-items-center">
 
                         <img class="img-fluid" src="@/assets/img/cat8.svg" alt="">
                         <span>АВТОМОБИЛИ</span>
                     </NuxtLink>
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=10" class="cat d-flex align-items-center">
                         <img class="img-fluid" src="@/assets/img/cat9.svg" alt="">
                         <span>МЕДИЦИНА</span>
                     </NuxtLink>
                 </div>
-                <NuxtLink to="/catalog" class="bigcat">
+                <NuxtLink to="/catalog?category=9" class="bigcat">
                     <div class="text-center">
                         <img class="img-fluid" src="@/assets/img/cat10.svg" alt="">
                         <span class="d-block">НЕДВИЖИМОСТЬ</span>
                     </div>
                 </NuxtLink>
                 <div class="cats">
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=7" class="cat d-flex align-items-center">
 
                         <img class="img-fluid" src="@/assets/img/cat11.svg" alt="">
                         <span>ПИТОМЦЫ</span>
                     </NuxtLink>
-                    <NuxtLink to="/catalog" class="cat d-flex align-items-center">
+                    <NuxtLink to="/catalog?category=11" class="cat d-flex align-items-center">
                         <img class="img-fluid" src="@/assets/img/cat12.svg" alt="">
                         <span>ФИНАНСЫ</span>
                     </NuxtLink>
@@ -288,73 +295,73 @@
             </div>
 
             <div class="mobcategory">
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=4" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat1.svg" alt="">
                         <span>ОДЕЖДА И МОДА</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=8" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat2.svg" alt="">
                         <span>ПРЕДПРИЯТИЯ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=2" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat3.svg" alt="">
                         <span>ЕДА И РЕСТОРАНЫ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=3" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat4.svg" alt="">
                         <span>ОБРАЗОВАНИЕ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=6" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat5.svg" alt="">
                         <span>ПУТЕШЕСТВИЯ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=1" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat6.svg" alt="">
                         <span>РАЗВЛЕЧЕНИЯ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=12" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat7.svg" alt="">
                         <span>ТЕХНИКА</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=5" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat8.svg" alt="">
                         <span>АВТОМОБИЛИ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=10" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat9.svg" alt="">
                         <span>МЕДИЦИНА</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=9" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat10.svg" alt="">
                         <span>НЕДВИЖИМОСТЬ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=7" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat11.svg" alt="">
                         <span>ПИТОМЦЫ</span>
                     </div>
                 </NuxtLink>
-                <NuxtLink to="/catalog" class="mobcategory__item">
+                <NuxtLink to="/catalog?category=11" class="mobcategory__item">
                     <div class="text-center">
                         <img src="@/assets/img/cat12.svg" alt="">
                         <span>ФИНАНСЫ</span>
@@ -748,6 +755,7 @@ svg:hover stop:last-child {
     color: #fff;
     font-family: var(--int);
     padding: 7px 25px;
+    display: block;
 }
 
 .sale2 {

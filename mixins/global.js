@@ -4,6 +4,8 @@ export default {
     return {
       isAuth: false,
       accountUrl: "",
+      pathUrl: 'https://themes.kz',
+      cart: [],
     };
   },
   methods: {
@@ -22,6 +24,21 @@ export default {
         })
         .catch((error) => console.log(error));
     },
+    getCart() {
+      const token = this.getAuthorizationCookie()
+      const path = `${this.pathUrl}/api/buyer/all-product-basket`;
+      axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+
+      axios
+          .get(path)
+          .then(response => {
+              this.cart = response.data
+              localStorage.setItem('cartLength', this.cart.length)
+          })
+          .catch(error => {
+              console.error(error)
+          })
+  },
     checkAuthorizationCookie() {
       const cookies = document.cookie.split(";");
       for (let i = 0; i < cookies.length; i++) {
@@ -73,5 +90,13 @@ export default {
         this.accountUrl = "/register";
       }
     }, 100);
+
+    const acctype = localStorage.getItem("accountType");
+      if (acctype == "buyer-account") {
+        this.getCart()
+      }
+      else{
+        return
+      }
   },
 };

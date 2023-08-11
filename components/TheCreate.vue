@@ -4,14 +4,15 @@
             <div class="d-flex creat__body w-100">
 
                 <div>
-                    <label for="name">Название товара</label>
-                    <input type="text" id="name" name="name" v-model="name" placeholder="Введите название товара" required>
+                    <label for="name">Название товара *</label>
+                    <input type="text" id="name" name="name" v-model="name" placeholder="Введите название товара" required
+                        ref="nameInp">
 
                     <div class="d-flex align-items-end category__select">
                         <div>
-                            <label for="category">Выберите категорию</label>
+                            <label for="category">Выберите категорию *</label>
                             <select name="add_category" id="category" v-model="selectedCategory"
-                                :disabled="hasSelectedCategory" required>
+                                :disabled="hasSelectedCategory" required ref="selInp">
                                 <option value="" disabled>Выбор категории</option>
                                 <option v-for="(category, index) in categories" :value="index" :key="index">{{ category
                                 }}
@@ -173,30 +174,43 @@ export default {
             this.selectedDesign = file;
         },
         async submitForm() {
-            const path = `${this.pathUrl}/api/seller/seller-lk/add-product/`
-            const formData = new FormData();
-            formData.append('name', this.name);
-            formData.append('category', this.selectedCategory + 1);
-            formData.append('price', this.price);
-            formData.append('discount', this.discount);
-            formData.append('main_image', this.selectedFile);
-            formData.append('description_1', this.description);
-            formData.append('main_file', this.selectedDesign);
-            this.$refs.createProduct.disabled = true
-            this.$refs.createProduct.innerHTML = 'СОЗДАЕМ ЗАКАЗ'
+            if (this.name.length > 0) {
+                this.$refs.nameInp.style.borderColor = '#000'
 
-            try {
-                const response = await axios.post(path, formData);
-                console.log('Форма успешно отправлена', response);
-                if (response.status == 201) {
-                    this.$refs.createProduct.disabled = false
-                    this.$refs.createProduct.innerHTML = 'Заказ успешно создан!'
+                if (this.selectedCategory != null) {
+                    this.$refs.selInp.style.borderColor = '#000'
+                    const path = `${this.pathUrl}/api/seller/seller-lk/add-product/`
+                    const formData = new FormData();
+                    formData.append('name', this.name);
+                    formData.append('category', this.selectedCategory + 1);
+                    formData.append('price', this.price);
+                    formData.append('discount', this.discount);
+                    formData.append('main_image', this.selectedFile);
+                    formData.append('description_1', this.description);
+                    formData.append('main_file', this.selectedDesign);
+                    this.$refs.createProduct.disabled = true
+                    this.$refs.createProduct.innerHTML = 'СОЗДАЕМ ЗАКАЗ'
+
+                    try {
+                        const response = await axios.post(path, formData);
+                        console.log('Форма успешно отправлена', response);
+                        if (response.status == 201) {
+                            this.$refs.createProduct.innerHTML = 'Заказ успешно создан!'
+                        }
+                    } catch (error) {
+                        console.error('Ошибка при отправке формы', error);
+                        this.$refs.createProduct.disabled = false
+                        this.$refs.createProduct.innerHTML = 'Ошибка при создании заказа'
+                    }
                 }
-            } catch (error) {
-                console.error('Ошибка при отправке формы', error);
-                this.$refs.createProduct.disabled = false
-                this.$refs.createProduct.innerHTML = 'Ошибка при создании заказа'
+                else {
+                    this.$refs.selInp.style.borderColor = 'red'
+                }
             }
+            else {
+                this.$refs.nameInp.style.borderColor = 'red'
+            }
+
         },
     },
     watch: {

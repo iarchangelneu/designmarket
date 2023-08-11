@@ -53,7 +53,7 @@
                 <div class="products__item d-flex" v-for="(product, i) in products" :key="product.id">
                     <span>{{ i + 1 }}.</span>
                     <div class="product__img">
-                        <img :src="this.pathUrl + product.main_image" alt="">
+                        <img :src="pathUrl + product.main_image" alt="">
                     </div>
 
                     <div class="product__desc w-100">
@@ -87,7 +87,7 @@
                 <div class="products__item d-flex" v-for="(sale, i) in sales" :key="sale.id">
                     <span>{{ i + 1 }}.</span>
                     <div class="product__img">
-                        <img :src="this.pathUrl + sale.products.main_image" alt="">
+                        <img :src="pathUrl + sale.products.main_image" alt="">
                     </div>
 
                     <div class="product__desc w-100">
@@ -176,7 +176,7 @@ export default {
     mixins: [global],
     data() {
         return {
-            tabs: 3,
+            tabs: 0,
             minPrice: null,
             maxPrice: null,
             filter: false,

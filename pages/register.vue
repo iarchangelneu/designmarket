@@ -86,7 +86,7 @@ export default {
                         document.cookie = `Authorization=${res.data.token}; expires=Fri, 31 Dec 2023 23:59:59 GMT; path=/`;
                         console.log(res)
                         localStorage.setItem('accountType', res.data.redirect_url)
-                        window.location.href = res.data.redirect_url
+                        window.location.href = '/'
                     })
                     .catch((error) => {
                         console.error(error);

@@ -20,7 +20,9 @@
                     <td>{{ formatDate(item.date) }}</td>
                     <td :class="{ success: item.paid == 1, failure: item.paid == 0 }">{{ item.paid == 1 ? 'Совершено' :
                         item.paid == 0 ? 'Отменено' : item.paid }}</td>
-                    <td>{{ item.amount_now.toLocaleString() }} ₸</td>
+                    <td>{{ item.paid === 0
+                        ? `${(item.amount_now - item.amount).toLocaleString()} ₸`
+                        : `${(item.amount_now + item.amount).toLocaleString()} ₸` }}</td>
                 </tr>
                 <!-- <tr>
                     <td>Продажа</td>
@@ -49,7 +51,9 @@
                         </div>
                         <div>
                             <span>Состояние счета</span>
-                            <small>{{ item.amount_now.toLocaleString() }} ₸</small>
+                            <small>{{ item.paid === 0
+                                ? `${(item.amount_now - item.amount).toLocaleString()} ₸`
+                                : `${(item.amount_now + item.amount).toLocaleString()} ₸` }}</small>
                         </div>
                     </div>
                 </div>

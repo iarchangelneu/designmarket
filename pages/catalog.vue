@@ -72,20 +72,22 @@
                     <div class="category">
                         <div class="text-center">
 
-                            <h2>{{ categories[product.category] || '' }}</h2>
+                            <h2>{{ product.name }}</h2>
 
                         </div>
                     </div>
-                    <img :src="product.main_image" alt="">
+                    <img :src="product.main_image"
+                        :class="{ notimg: product.main_image == 'https://themes.kz/media/media/system/no_photo.jpg' }"
+                        alt="">
                     <div class="price">
-                        {{ product.price }} ₸
+                        {{ (Math.floor(product.price - ((product.price * product.discount) / 100))).toLocaleString() }} ₸
                     </div>
                 </div>
             </NuxtLink>
         </div>
 
         <div class="text-center showmore">
-            <button>показать еще</button>
+            <button @click="loadMoreProducts()" ref="showmore">показать еще</button>
         </div>
     </div>
 </template>
@@ -125,15 +127,39 @@ export default {
     },
     methods: {
         getProducts() {
-            const path = `${this.pathUrl}/api/products/all-product`;
+            const queryParams = new URLSearchParams(window.location.search);
+            const categoryParam = queryParams.get('category');
+
+            let url = `${this.pathUrl}/api/products/all-product`;
+            if (categoryParam) {
+                url += `?category__in=${categoryParam}`;
+            }
+
             axios
-                .get(path)
+                .get(url)
                 .then(response => {
                     this.products = response.data;
                 })
                 .catch(error => {
                     console.error(error);
                 });
+        },
+        loadMoreProducts() {
+            if (this.products.next) {
+                axios
+                    .get(this.products.next)
+                    .then(response => {
+                        // Добавляем новые продукты к существующим
+                        this.products.results.push(...response.data.results);
+                        this.products.next = response.data.next;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+            else {
+                this.$refs.showmore.innerHTML = 'Больше ничего нет (;'
+            }
         },
         sortBy(ordering) {
             this.sort = false
@@ -159,9 +185,7 @@ export default {
             }
 
             if (this.selectedCategories.length > 0) {
-                this.selectedCategories.forEach(category => {
-                    params.append('category__in', category);
-                });
+                params.append('category__in', this.selectedCategories.join(','));
             }
             if (this.searchQuery) {
                 params.append('name__icontains', this.searchQuery);
@@ -213,6 +237,12 @@ export default {
     },
     created() {
         this.getProducts()
+        const queryParams = new URLSearchParams(window.location.search);
+        const categoryParam = queryParams.get('category');
+        if (categoryParam) {
+            this.selectedCategories = categoryParam.split(',').map(Number);
+        }
+        this.applyFilters();
     }
 }
 </script >
@@ -538,7 +568,12 @@ hr {
     width: 556px;
     height: 262px;
     object-fit: cover;
+    object-position: top;
     border-radius: 50px;
+}
+
+.notimg {
+    object-position: center !important;
 }
 
 .category h2 {

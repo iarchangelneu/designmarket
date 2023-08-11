@@ -42,7 +42,7 @@ export default {
     mixins: [global],
     data() {
         return {
-            hideFooterOnPages: ['login', 'register'],
+            hideFooterOnPages: ['login', 'register', 'complete-buy'],
         };
     },
 }

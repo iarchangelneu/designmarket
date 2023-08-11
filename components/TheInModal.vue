@@ -65,6 +65,9 @@ export default {
                     if (response.status = 201) {
                         this.$refs.inBtn.innerHTML = 'ПОПОЛНИТЬ'
                     }
+                    if (response.status == 228) {
+                        this.$refs.outBtn.innerHTML = response.data.error_msg
+                    }
                 })
                 .catch(error => {
                     console.error(error)
