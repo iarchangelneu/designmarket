@@ -932,7 +932,7 @@ svg:hover stop:last-child {
 .navslider {
     position: absolute;
     bottom: 0;
-    right: 20%;
+    right: 0;
     z-index: 100;
 }
 
