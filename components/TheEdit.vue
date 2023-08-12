@@ -83,8 +83,9 @@
 </template>
 <script>
 import axios from 'axios';
-
+import global from '~/mixins/global';
 export default {
+    mixins: [global],
     props: {
         productId: Number,
     },
@@ -131,6 +132,7 @@ export default {
     methods: {
         async submitForm() {
             const path = `${this.pathUrl}/api/seller/seller-lk/edit-product/${this.productId}`
+            const csrf = this.getCSRFToken()
             const formData = new FormData();
             formData.append('name', this.name);
             formData.append('category', this.selectedCategory + 1);
@@ -143,6 +145,7 @@ export default {
 
 
             try {
+                axios.defaults.headers.common['X-CSRFToken'] = csrf;
                 const response = await axios.put(path, formData);
                 const save = document.querySelector('#savebtn')
                 console.log('Форма успешно отправлена', response);

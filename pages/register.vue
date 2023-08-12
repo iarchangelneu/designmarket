@@ -66,7 +66,9 @@ export default {
         register() {
             const buyer = `${this.pathUrl}/api/main/registration/buyer`
             const seller = `${this.pathUrl}/api/main/registration/seller`
+            const csrf = this.getCSRFToken()
             if (this.activeSwitchPosition == '50%') {
+                axios.defaults.headers.common['X-CSRFToken'] = csrf;
                 axios
                     .post(seller, { email: this.email, password: this.password, username: this.email })
                     .then((res) => {
@@ -80,6 +82,7 @@ export default {
                     });
             }
             else {
+                axios.defaults.headers.common['X-CSRFToken'] = csrf;
                 axios
                     .post(buyer, { email: this.email, password: this.password, username: this.email })
                     .then((res) => {

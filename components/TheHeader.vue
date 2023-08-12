@@ -50,17 +50,17 @@
                             <div class="mobmenu">
                                 <div class="links">
                                     <div v-if="!isAuth">
-                                        <NuxtLink to="/login">Войти</NuxtLink>
-                                        <NuxtLink to="/register">регистрация</NuxtLink>
+                                        <NuxtLink to="/login" @click="closepls">Войти</NuxtLink>
+                                        <NuxtLink to="/register" @click="closepls">регистрация</NuxtLink>
                                     </div>
                                     <div v-else>
                                         <NuxtLink style="cursor: pointer;" alt="" data-toggle="modal"
                                             :data-target="accountType === 'seller' ? '#outModal' : '#inModal'">{{
                                                 userBalance }} ₸</NuxtLink>
-                                        <NuxtLink :to="this.accountUrl">Личный кабинет</NuxtLink>
+                                        <NuxtLink :to="this.accountUrl" @click="closepls">Личный кабинет</NuxtLink>
                                     </div>
-                                    <NuxtLink to="/catalog">Каталог</NuxtLink>
-                                    <NuxtLink to="/catalog?search=true">поиск</NuxtLink>
+                                    <NuxtLink to="/catalog" @click="closepls">Каталог</NuxtLink>
+                                    <NuxtLink to="/catalog?search=true" @click="closepls">поиск</NuxtLink>
 
                                     <div class="text-center">
                                         <img src="@/assets/img/mobcal.svg" alt="">
@@ -123,6 +123,9 @@ export default {
         }
     },
     methods: {
+        closepls() {
+            document.querySelector('#menu__toggle').checked = false
+        },
         openHeader() {
             let sc = $(".cart")[0];
             sc.style.right = 0;
@@ -146,8 +149,10 @@ export default {
         },
         deleteFromCart(id) {
             const token = this.getAuthorizationCookie()
+            const csrf = this.getCSRFToken()
             const path = `${this.pathUrl}/api/buyer/delete-product-basket/${id}`
             axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios.defaults.headers.common['X-CSRFToken'] = csrf;
             axios
                 .put(path)
                 .then(response => {

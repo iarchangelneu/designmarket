@@ -6,7 +6,7 @@
             <div class="left__side w-100">
                 <div class="cart__item" v-for="item in cart" :key="item.id">
                     <div class="cart__img">
-                        <img :src="this.pathUrl + item.products.main_image" alt="">
+                        <img :src="pathUrl + item.products.main_image" alt="">
                     </div>
                     <div class="name">
                         <span>{{ item.products.name }}</span>

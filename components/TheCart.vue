@@ -60,8 +60,10 @@ export default {
         },
         deleteFromCart(id) {
             const token = this.getAuthorizationCookie()
+            const csrf = this.getCSRFToken()
             const path = `${this.pathUrl}/api/buyer/delete-product-basket/${id}`
             axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios.defaults.headers.common['X-CSRFToken'] = csrf;
             axios
                 .put(path)
                 .then(response => {

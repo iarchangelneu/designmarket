@@ -254,6 +254,8 @@ export default {
         },
         editAccount() {
             const path = `${this.pathUrl}/api/seller/seller-lk/edit/`
+            const csrf = this.getCSRFToken()
+            axios.defaults.headers.common['X-CSRFToken'] = csrf;
             axios
                 .put(path,
                     {

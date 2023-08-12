@@ -73,6 +73,8 @@ export default {
         },
         addToCart() {
             const path = `${this.pathUrl}/api/buyer/add-product-basket`
+            const csrf = this.getCSRFToken()
+            axios.defaults.headers.common['X-CSRFToken'] = csrf;
             axios
                 .post(path, {
                     products: this.product.id,

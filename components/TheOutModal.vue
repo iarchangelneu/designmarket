@@ -57,8 +57,10 @@ export default {
     methods: {
         outMoney() {
             const token = this.getAuthorizationCookie()
+            const csrf = this.getCSRFToken()
             const path = `${this.pathUrl}/api/money/pay-return`
             axios.defaults.headers.common['Authorization'] = `Token ${token}`;
+            axios.defaults.headers.common['X-CSRFToken'] = csrf;
             this.$refs.outBtn.innerHTML = 'ОЖИДАЙТЕ'
 
             axios

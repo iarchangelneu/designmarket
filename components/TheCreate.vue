@@ -83,8 +83,10 @@
     </div>
 </template>
 <script>
-import axios from 'axios'
+import global from '~/mixins/global';
+import axios from 'axios';
 export default {
+    mixins: [global],
     data() {
         return {
             discount: 0,
@@ -174,6 +176,7 @@ export default {
             this.selectedDesign = file;
         },
         async submitForm() {
+            const csrf = this.getCSRFToken()
             if (this.name.length > 0) {
                 this.$refs.nameInp.style.borderColor = '#000'
 
@@ -192,6 +195,7 @@ export default {
                     this.$refs.createProduct.innerHTML = 'СОЗДАЕМ ЗАКАЗ'
 
                     try {
+                        axios.defaults.headers.common['X-CSRFToken'] = csrf;
                         const response = await axios.post(path, formData);
                         console.log('Форма успешно отправлена', response);
                         if (response.status == 201) {

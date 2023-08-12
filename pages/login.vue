@@ -25,8 +25,10 @@
     </div>
 </template>
 <script>
+import global from '~/mixins/global';
 import axios from 'axios';
 export default {
+    mixins: [global],
     data() {
         return {
             email: '',
@@ -37,9 +39,9 @@ export default {
     methods: {
         login() {
             const path = `${this.pathUrl}/api/main/authorization`
-            // const csrf = this.getCSRFToken()
+            const csrf = this.getCSRFToken()
 
-            // axios.defaults.headers.common['X-CSRFToken'] = csrf;
+            axios.defaults.headers.common['X-CSRFToken'] = csrf;
             axios
                 .post(path, { username: this.email, password: this.password })
                 .then((res) => {
