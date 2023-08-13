@@ -8,6 +8,11 @@
                             Вывод средств
                         </h1>
                     </div>
+                    <div class="tabers" v-if="accountType == 'buyer'">
+                        <button data-toggle="modal" data-dismiss="modal" aria-label="Close"
+                            data-target="#inModal">ПОПОЛНЕНИЕ</button>
+                        <button>ВЫВОД</button>
+                    </div>
                     <p>Порядок действий для вывода средств</p>
                     <p>1. Подтвердите Ваше согласие с правилами нашей системы</p>
                     <label class="custom-checkbox">
@@ -52,6 +57,7 @@ export default {
             pathUrl: 'https://themes.kz',
             cardNumber: '',
             cardNumberMaxLength: 19,
+            accountType: '',
         }
     },
     methods: {
@@ -93,10 +99,56 @@ export default {
             // Обрезаем карточный номер до максимальной длины
             this.cardNumber = this.cardNumber.slice(0, this.cardNumberMaxLength);
         }
+    },
+    mounted() {
+        const accType = localStorage.getItem('accountType')
+        if (accType == 'buyer-account') {
+            this.accountType = 'buyer'
+
+        }
+        else if (accType == 'seller-account') {
+            this.accountType = 'seller'
+        }
+        else {
+            return
+        }
     }
 }
 </script>
 <style scoped>
+.tabers {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.tabers button {
+    flex: 1;
+    border: 3px solid #000;
+    border-radius: 10px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 110%;
+    font-family: var(--int);
+    padding: 17px 0;
+}
+
+.tabers button:nth-child(1) {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #fff;
+    color: #000;
+}
+
+.tabers button:nth-child(2) {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: #000;
+    color: #fff;
+}
+
 #card {
     max-width: 100% !important;
     text-align: left;

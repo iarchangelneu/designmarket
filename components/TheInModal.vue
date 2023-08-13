@@ -8,6 +8,12 @@
                             Пополнение баланса
                         </h1>
                     </div>
+
+                    <div class="tabers" v-if="accountType == 'buyer'">
+                        <button>ПОПОЛНЕНИЕ</button>
+                        <button data-toggle="modal" data-dismiss="modal" aria-label="Close"
+                            data-target="#outModal">ВЫВОД</button>
+                    </div>
                     <p>Порядок действий для пополнения баланса</p>
                     <p>1. Подтвердите Ваше согласие с правилами нашей системы</p>
                     <label class="custom-checkbox">
@@ -46,6 +52,7 @@ export default {
         return {
             count: null,
             pathUrl: 'https://themes.kz',
+            accountType: '',
         }
     },
     methods: {
@@ -76,10 +83,56 @@ export default {
                     this.$refs.inBtn.innerHTML = 'ПОПОЛНИТЬ'
                 })
         },
+    },
+    mounted() {
+        const accType = localStorage.getItem('accountType')
+        if (accType == 'buyer-account') {
+            this.accountType = 'buyer'
+
+        }
+        else if (accType == 'seller-account') {
+            this.accountType = 'seller'
+        }
+        else {
+            return
+        }
     }
 }
 </script>
 <style scoped>
+.tabers {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.tabers button {
+    flex: 1;
+    border: 3px solid #000;
+    border-radius: 10px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 110%;
+    font-family: var(--int);
+    padding: 17px 0;
+}
+
+.tabers button:nth-child(1) {
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #000;
+    color: #fff;
+}
+
+.tabers button:nth-child(2) {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: #fff;
+    color: #000;
+}
+
 .modalfooter {
     gap: 10px;
     flex-wrap: wrap;
