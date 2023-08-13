@@ -14,7 +14,7 @@ export default {
     mixins: [global],
     data() {
         return {
-            pathUrl: 'https://d-market.kz',
+            pathUrl: 'https://themes.kz',
         }
     },
     methods: {
