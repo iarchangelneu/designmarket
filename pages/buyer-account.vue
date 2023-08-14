@@ -524,6 +524,7 @@ useSeoMeta({
     object-fit: cover;
     width: 29.74vw;
     height: 268.992px;
+    object-position: top;
 }
 
 .tabs button {

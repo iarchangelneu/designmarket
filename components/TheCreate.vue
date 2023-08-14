@@ -106,6 +106,10 @@ export default {
                 "Медицина",
                 "Финансы",
                 "Техника",
+                "Бизнес",
+                "Продажи",
+                "Другое",
+                "Спорт"
             ],
             selectedCategory: null,
             selectedCategories: [],

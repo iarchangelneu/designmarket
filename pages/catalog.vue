@@ -117,9 +117,13 @@ export default {
                 10: "Медицина",
                 11: "Финансы",
                 12: "Техника",
+                13: "Бизнес",
+                14: "Продажи",
+                15: "Другое",
+                16: "Спорт"
             },
-            categories1: ["РАЗВЛЕЧЕНИЯ", "ЕДА И РЕСТОРАНЫ", "ОБРАЗОВАНИЕ", "ОДЕЖДА И МОДА", "АВТОМОБИЛИ", "ПУТЕШЕСТВИЯ"],
-            categories2: ["ПИТОМЦЫ", "ПРЕДПРИЯТИЯ", "НЕДВИЖИМОСТЬ", "МЕДИЦИНА", "ФИНАНСЫ", "ТЕХНИКА"],
+            categories1: ["РАЗВЛЕЧЕНИЯ", "ЕДА И РЕСТОРАНЫ", "ОБРАЗОВАНИЕ", "ОДЕЖДА И МОДА", "АВТОМОБИЛИ", "ПУТЕШЕСТВИЯ", "БИЗНЕС", "ПРОДАЖИ"],
+            categories2: ["ПИТОМЦЫ", "ПРЕДПРИЯТИЯ", "НЕДВИЖИМОСТЬ", "МЕДИЦИНА", "ФИНАНСЫ", "ТЕХНИКА", "СПОРТ", "ДРУГОЕ"],
             selectedCategories: [],
             shouldFocusInput: false,
             searchQuery: ''
@@ -562,6 +566,7 @@ hr {
     position: relative;
     box-shadow: 0px 0px 20px 0px rgba(47, 59, 163, 0.20);
     border-radius: 50px;
+    overflow: hidden;
 }
 
 .catalog__item img {
@@ -569,7 +574,7 @@ hr {
     height: 262px;
     object-fit: cover;
     object-position: top;
-    border-radius: 50px;
+    border-radius: 0;
 }
 
 .notimg {
@@ -597,7 +602,7 @@ hr {
 .catalog__block {
     margin-top: 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     gap: 26px;
 }
@@ -649,6 +654,10 @@ hr {
 @media (max-width: 1440px) {
     .catalog {
         padding: 140px 50px 72px;
+    }
+
+    .catalog__block {
+        justify-content: center;
     }
 }
 
