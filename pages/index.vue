@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="sale2">
-                                <span>30%</span>
+                                <span>- 30%</span>
                             </div>
                         </div>
                         <div class="smallimgs">
@@ -101,7 +101,7 @@
                                     </div>
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -113,7 +113,7 @@
 
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -125,7 +125,7 @@
 
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -137,7 +137,7 @@
 
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
 
@@ -154,7 +154,7 @@
                                 </div>
                             </div>
                             <div class="sale2">
-                                <span>30%</span>
+                                <span>- 30%</span>
                             </div>
                         </div>
                         <div class="smallimgs">
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -178,7 +178,7 @@
 
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -190,7 +190,7 @@
 
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
                             <div class="smallsh">
@@ -202,7 +202,7 @@
 
                                 </div>
                                 <div class="sale">
-                                    <span>30%</span>
+                                    <span>- 30%</span>
                                 </div>
                             </div>
 
