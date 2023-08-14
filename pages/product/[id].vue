@@ -284,6 +284,7 @@ useSeoMeta({
 
 .product__preview img {
     width: 100%;
+    border-radius: 50px;
 }
 
 .product {
