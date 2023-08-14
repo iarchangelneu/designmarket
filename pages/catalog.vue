@@ -54,7 +54,7 @@
                         </div>
                         <div>
                             <label class="custom-checkbox" v-for="(category, index) in categories2" :key="index + 6">
-                                <input type="checkbox" :value="index + 7" v-model="selectedCategories"
+                                <input type="checkbox" :value="index + 9" v-model="selectedCategories"
                                     @change="applyFilters">
                                 <p class="checkbox-text m-0">{{ category }}</p>
                             </label>
