@@ -27,6 +27,9 @@ export default {
                 .get(path)
                 .then(response => {
                     console.log(response)
+                    if (response.status == 201) {
+                        window.location.href = '/'
+                    }
                 })
                 .catch(error => {
                     console.log(error);
