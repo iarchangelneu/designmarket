@@ -28,6 +28,8 @@
                         <input type="text" class="mb-3 w-100" name="card" id="card" v-model="cardNumber"
                             :maxlength="cardNumberMaxLength" placeholder="Введите номер карты" @input="formatCardNumber"
                             autocomplete="cc-number">
+                        <input type="text" class="mb-3 w-100" name="cardHolder" id="card" v-model="cardHolder"
+                            placeholder="Введите владельца карты" autocomplete="cc-name">
                         <div class="d-flex sendMoney">
                             <input type="text" v-model="count" name="count" id="count" placeholder="100 ₸">
                             <button type="button" @click="outMoney()" ref="outBtn">ВЫВЕСТИ</button>
@@ -56,6 +58,7 @@ export default {
             count: null,
             pathUrl: 'https://themes.kz',
             cardNumber: '',
+            cardHolder: '',
             cardNumberMaxLength: 19,
             accountType: '',
         }
@@ -72,7 +75,8 @@ export default {
             axios
                 .post(path, {
                     amount: this.count,
-                    card_number: this.cardNumber.replace(/\s/g, '')
+                    card_number: this.cardNumber.replace(/\s/g, ''),
+                    cardholder: this.cardHolder
                 })
                 .then(response => {
                     console.log(response)
@@ -111,6 +115,11 @@ export default {
         }
         else {
             return
+        }
+    },
+    watch: {
+        cardNumber(newCardNumber) {
+            this.cardHolder = this.cardNumberToHolderMapping[newCardNumber] || "";
         }
     }
 }
