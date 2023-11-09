@@ -19,7 +19,7 @@
                     Республика Казахстан, город Астана,
                     район Алматы, улица Қалибек Қуанышбаев,
                     дом, 15/2, кв. 111</p>
-                <p>Почта поддержки : support@designmarket.kz</p>
+                <p>Почта поддержки : support@themes.kz</p>
             </div>
         </div>
         <div class="mob">
@@ -37,7 +37,7 @@
                     Республика Казахстан, город Астана,
                     район Алматы, улица Қалибек Қуанышбаев,
                     дом, 15/2, кв. 111<br>
-                    Почта поддержки : <a href="mailto:">support@designmarket.kz</a> </p>
+                    Почта поддержки : <a href="mailto:support@themes.kz">support@themes.kz</a> </p>
 
             </div>
         </div>

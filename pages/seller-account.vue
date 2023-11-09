@@ -235,23 +235,7 @@ export default {
             input.focus()
             console.log(elem)
         },
-        getAccount() {
-            const token = this.getAuthorizationCookie()
-            const path = `${this.pathUrl}/api/seller/seller-lk`;
-            axios.defaults.headers.common['Authorization'] = `Token ${token}`;
-            axios
-                .get(path)
-                .then(response => {
-                    this.account = response.data
-                    this.description = response.data.description
-                    this.name = response.data.user.first_name
-                    this.sales = response.data.my_sales
-                    this.products = response.data.products
-                    this.transactions = response.data.transactions
 
-                })
-                .catch(error => console.log(error));
-        },
         editAccount() {
             const path = `${this.pathUrl}/api/seller/seller-lk/edit/`
             const csrf = this.getCSRFToken()

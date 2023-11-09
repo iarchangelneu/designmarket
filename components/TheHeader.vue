@@ -163,31 +163,6 @@ export default {
                     console.error(error)
                 })
         },
-        buyProduct() {
-            // const token = this.getAuthorizationCookie()
-            // const path = `${this.pathUrl}/api/buyer/placed-basket`
-            // axios.defaults.headers.common['Authorization'] = `Token ${token}`;
-            // this.$refs.cartBtn.innerHTML = 'Оформляем'
-            // axios
-            //     .get(path)
-            //     .then(response => {
-            //         console.log(response)
-            //         this.getCart()
-            //         if (response.status == 204) {
-            //             this.$refs.cartBtn.innerHTML = 'Недостаточно средств'
-            //         }
-            //         if (response.status == 201) {
-            //             this.getBuyer()
-            //             this.$refs.cartBtn.innerHTML = 'Переходим к оплате'
-            //             // window.location.href = '/buyer-account'
-            //         }
-            //     })
-            //     .catch(error => {
-            //         console.error(error)
-            //     })
-
-            window.location.href = '/complete-buy'
-        },
         getSeller() {
             const token = this.getAuthorizationCookie()
             const path = `${this.pathUrl}/api/seller/seller-lk`;
